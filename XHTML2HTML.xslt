@@ -11,6 +11,7 @@
 		<xsl:value-of select="name(.)"/>
 		<xsl:apply-templates select="@*"/>
 		<xsl:text disable-output-escaping="yes">&gt;</xsl:text>
+		<!-- We don't need end tags for these elements -->
 	</xsl:template>
 	<!-- html -->
 	<xsl:template match="html">
@@ -44,6 +45,18 @@
 		<xsl:apply-templates select="* | text()"/>
 		<!-- Don't close the tag because we won't have any spaces or comments following the element -->
 	</xsl:template>
+	<!-- p -->
+	<xsl:template match="p">
+		<!-- Always include the start tage -->
+		<xsl:text disable-output-escaping="yes">&lt;p</xsl:text>
+		<xsl:apply-templates select="@*"/>
+		<xsl:text disable-output-escaping="yes">&gt;</xsl:text>
+		<xsl:apply-templates select="* | text()"/>
+		<!-- Display the end tag if there are following elements or we're in an <a> element, and the next node is not a listed element -->
+		<xsl:if test="(following-sibling::node() or parent::a) and not(following-sibling::node()[1][self::p or self::address or self::article or self::aside or self::aside or self::blockquote or self::dir or self::div or self::dl or self::fieldset or self::footer or self::form or self::h1 or self::h2 or self::h3 or self::h4 or self::h5 or self::h6 or self::header or self::hgroup or self::hr or self::menu or self::nav or self::ol or self::pre or self::section or self::table or self::ul])">
+			<xsl:text disable-output-escaping="yes">&lt;/p&gt;</xsl:text>
+		</xsl:if>
+	</xsl:template>
 	<!-- li -->
 	<xsl:template match="li">
 		<!-- Always include the start tage -->
@@ -54,6 +67,30 @@
 		<!-- Display the end tag if there are more nodes afterwards and they aren't <li> elements -->
 		<xsl:if test="following-sibling::node() and not(following-sibling::node()[1][self::li])">
 			<xsl:text disable-output-escaping="yes">&lt;/li&gt;</xsl:text>
+		</xsl:if>
+	</xsl:template>
+	<!-- dt -->
+	<xsl:template match="dt">
+		<!-- Always include the start tage -->
+		<xsl:text disable-output-escaping="yes">&lt;dt</xsl:text>
+		<xsl:apply-templates select="@*"/>
+		<xsl:text disable-output-escaping="yes">&gt;</xsl:text>
+		<xsl:apply-templates select="* | text()"/>
+		<!-- Display the end tag if the following nodes are neither a <dt> element or a <dd> element-->
+		<xsl:if test="not(following-sibling::node()[1][self::dt or self::dd])">
+			<xsl:text disable-output-escaping="yes">&lt;/dt&gt;</xsl:text>
+		</xsl:if>
+	</xsl:template>
+	<!-- dd -->
+	<xsl:template match="dd">
+		<!-- Always include the start tage -->
+		<xsl:text disable-output-escaping="yes">&lt;dd</xsl:text>
+		<xsl:apply-templates select="@*"/>
+		<xsl:text disable-output-escaping="yes">&gt;</xsl:text>
+		<xsl:apply-templates select="* | text()"/>
+		<!-- Display the end tag if there are following nodes and the following nodes are neither a <dt> element or a <dd> element-->
+		<xsl:if test="following-sibling::node() and not(following-sibling::node()[1][self::dt or self::dd])">
+			<xsl:text disable-output-escaping="yes">&lt;/dd&gt;</xsl:text>
 		</xsl:if>
 	</xsl:template>
 	<!-- Other elements -->
