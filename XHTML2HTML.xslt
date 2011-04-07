@@ -108,6 +108,18 @@
 			<xsl:text disable-output-escaping="yes">&gt;</xsl:text>
 		</xsl:if>
 	</xsl:template>
+	<!-- optgroup -->
+	<xsl:template match="optgroup">
+		<!-- Always include the start tage -->
+		<xsl:text disable-output-escaping="yes">&lt;optgroup</xsl:text>
+		<xsl:apply-templates select="@*"/>
+		<xsl:text disable-output-escaping="yes">&gt;</xsl:text>
+		<xsl:apply-templates select="* | text()"/>
+		<!-- Display the end tag if there are following nodes and the following nodes are not an <optgroup> element -->
+		<xsl:if test="following-sibling::node() and not(following-sibling::node()[1][self::optgroup])">
+			<xsl:text disable-output-escaping="yes">&lt;/optgroup&gt;</xsl:text>
+		</xsl:if>
+	</xsl:template>
 	<!-- Other elements -->
 	<xsl:template match="*">
 		<xsl:text disable-output-escaping="yes">&lt;</xsl:text>
