@@ -44,6 +44,18 @@
 		<xsl:apply-templates select="* | text()"/>
 		<!-- Don't close the tag because we won't have any spaces or comments following the element -->
 	</xsl:template>
+	<!-- li -->
+	<xsl:template match="li">
+		<!-- Always include the start tage -->
+		<xsl:text disable-output-escaping="yes">&lt;li</xsl:text>
+		<xsl:apply-templates select="@*"/>
+		<xsl:text disable-output-escaping="yes">&gt;</xsl:text>
+		<xsl:apply-templates select="* | text()"/>
+		<!-- Display the end tag if there are more nodes afterwards and they aren't <li> elements -->
+		<xsl:if test="following-sibling::node() and not(following-sibling::node()[1][self::li])">
+			<xsl:text disable-output-escaping="yes">&lt;/li&gt;</xsl:text>
+		</xsl:if>
+	</xsl:template>
 	<!-- Other elements -->
 	<xsl:template match="*">
 		<xsl:text disable-output-escaping="yes">&lt;</xsl:text>
