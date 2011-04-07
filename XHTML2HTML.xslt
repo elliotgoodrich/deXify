@@ -93,6 +93,21 @@
 			<xsl:text disable-output-escaping="yes">&lt;/dd&gt;</xsl:text>
 		</xsl:if>
 	</xsl:template>
+	<!-- rp or rt -->
+	<xsl:template match="rt | rp">
+		<!-- Always include the start tage -->
+		<xsl:text disable-output-escaping="yes">&lt;</xsl:text>
+		<xsl:value-of select="name(.)"/>
+		<xsl:apply-templates select="@*"/>
+		<xsl:text disable-output-escaping="yes">&gt;</xsl:text>
+		<xsl:apply-templates select="* | text()"/>
+		<!-- Display the end tag if there are following nodes and the following nodes are neither a <rt> element or a <rp> element-->
+		<xsl:if test="following-sibling::node() and not(following-sibling::node()[1][self::rt or self::rp])">
+			<xsl:text disable-output-escaping="yes">&lt;/</xsl:text>
+			<xsl:value-of select="name(.)"/>
+			<xsl:text disable-output-escaping="yes">&gt;</xsl:text>
+		</xsl:if>
+	</xsl:template>
 	<!-- Other elements -->
 	<xsl:template match="*">
 		<xsl:text disable-output-escaping="yes">&lt;</xsl:text>
