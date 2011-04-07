@@ -1,13 +1,11 @@
 <?xml version="1.0"?>
-<!-- http://dev.w3.org/html5/spec/syntax.html#void-elements -->
-<!-- TODO!!!
-		Probably should split html into html no attribs and html with attribs, will make the if statements less rubbish -->
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<xsl:output method="html"/>
 	<xsl:template match="/">
 		<xsl:apply-templates/>
 	</xsl:template>
-	<!-- Void elements http://dev.w3.org/html5/spec/syntax.html#void-elements -->
+	<!-- Void elements -->
+	<!-- http://dev.w3.org/html5/spec/syntax.html#void-elements -->
 	<xsl:template match="area | base | br | col | command | embed | hr | img | input | keygen | link | meta | param | source | track | wbr">
 		<xsl:text disable-output-escaping="yes">&lt;</xsl:text>
 		<xsl:value-of select="name(.)"/>
@@ -21,8 +19,8 @@
 			<xsl:apply-templates select="@*"/>
 			<xsl:text disable-output-escaping="yes">&gt;</xsl:text>
 		</xsl:if>
-		<!-- TODO: Check that we need text() below, also check other elements -->
-		<xsl:apply-templates select="*|text()"/>
+		<xsl:apply-templates select="*"/>
+		<!-- Don't close the tag because it won't be followed by a comment -->
 	</xsl:template>
 	<!-- head -->
 	<xsl:template match="head">
@@ -32,7 +30,19 @@
 			<xsl:apply-templates select="@*"/>
 			<xsl:text disable-output-escaping="yes">&gt;</xsl:text>
 		</xsl:if>
-		<xsl:apply-templates select="*|text()"/>
+		<xsl:apply-templates select="* | text()"/>
+		<!-- Don't close the tag because we won't have any spaces or comments following the element -->
+	</xsl:template>
+	<!-- body-->
+	<xsl:template match="body">
+		<!-- Display the start tag is the body element has attributes, or has content and the first element is a script or a style element (we don't need to check for comments as these are stripped) -->
+		<xsl:if test="attribute::* or (node() and node()[1][self::script or self::style])">
+			<xsl:text disable-output-escaping="yes">&lt;body</xsl:text>
+			<xsl:apply-templates select="@*"/>
+			<xsl:text disable-output-escaping="yes">&gt;</xsl:text>
+		</xsl:if>
+		<xsl:apply-templates select="* | text()"/>
+		<!-- Don't close the tag because we won't have any spaces or comments following the element -->
 	</xsl:template>
 	<!-- Other elements -->
 	<xsl:template match="*">
