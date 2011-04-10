@@ -1,5 +1,9 @@
 <?xml version="1.0"?>
-<!-- TODO: Set up some tests for this -->
+<!-- TODO:
+	- Set up some tests for this
+	- Don't strip conditional comments, and include checking for comments in existing logic
+	- See if there are any other places where comments shouldn't be stripped
+-->
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<xsl:output method="html"/>
 	<!--
@@ -298,10 +302,10 @@
 				<xsl:choose>
 					<xsl:when test="contains(., ' ') or contains(., '=') or contains(., $singlequote) or contains(., $doublequote)">
 						<xsl:value-of select="$quotation"/>
-						<!--<xsl:call-template name="escape-xml">
+						<!--<xsl:value-of select="." disable-output-escaping="no"/>-->
+						<xsl:call-template name="escape-xml">
 							<xsl:with-param name="text" select="."/>
-						</xsl:call-template>-->
-						<xsl:value-of select="."/>
+						</xsl:call-template>
 						<xsl:value-of select="$quotation"/>
 					</xsl:when>
 					<xsl:otherwise>
@@ -314,17 +318,21 @@
 	<xsl:template match="text()">
 		<xsl:value-of select="."/>
 	</xsl:template>
+	<!-- Function from Pavel Minaev, StackOverflow CC-BY-SA -->
+	<!-- http://stackoverflow.com/questions/1162352/converting-xml-to-escaped-text-in-xslt -->
 	<xsl:template name="escape-xml">
 		<xsl:param name="text"/>
 		<xsl:if test="$text != ''">
 			<xsl:variable name="head" select="substring($text, 1, 1)"/>
 			<xsl:variable name="tail" select="substring($text, 2)"/>
 			<xsl:choose>
-				<xsl:when test="$head = '&amp;'">
-					<xsl:text disable-output-escaping="no">&amp;amp;</xsl:text>
-				</xsl:when>
+				<xsl:when test="$head = '&amp;'">&amp;amp;</xsl:when>
+				<xsl:when test="$head = '&lt;'">&amp;lt;</xsl:when>
+				<xsl:when test="$head = '&gt;'">&amp;gt;</xsl:when>
+				<xsl:when test="$head = '&quot;'">&amp;quot;</xsl:when>
+				<xsl:when test="$head = &quot;&apos;&quot;">&amp;apos;</xsl:when>
 				<xsl:otherwise>
-					<xsl:value-of select="$head" disable-output-escaping="no"/>
+					<xsl:value-of select="$head"/>
 				</xsl:otherwise>
 			</xsl:choose>
 			<xsl:call-template name="escape-xml">
