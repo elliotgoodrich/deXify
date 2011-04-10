@@ -3,9 +3,15 @@
 	- Set up some tests for this
 	- Don't strip conditional comments, and include checking for comments in existing logic
 	- See if there are any other places where comments shouldn't be stripped
+	- Finish commenting variables and the final templates
+	- Check that character escaping works for text and attribute values
+	- Sort out the xml:lang attribute not validation
+	- Output an HTML5 doctype
 -->
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<xsl:output method="html"/>
+	<xsl:variable name="singlequote">'</xsl:variable>
+	<xsl:variable name="doublequote">"</xsl:variable>
 	<!--
 
 	/
@@ -286,8 +292,6 @@
 			<xsl:if test="not(name() = 'compact' or name() = 'checked' or name() = 'declare' or name() = 'readonly' or name() = 'disabled' or name() = 'selected' or name() = 'defer' or name() = 'ismap' or name() = 'nohref' or name() = 'noshade' or name() = 'nowrap' or name() = 'multiple' or name() = 'noresize')">
 				<xsl:text>=</xsl:text>
 				<!-- if there are single quotes inside the attribute then we must use double quotes -->
-				<xsl:variable name="singlequote">'</xsl:variable>
-				<xsl:variable name="doublequote">"</xsl:variable>
 				<xsl:variable name="quotation">
 					<xsl:choose>
 						<xsl:when test="contains(., $singlequote)">
@@ -303,7 +307,7 @@
 					<xsl:when test="contains(., ' ') or contains(., '=') or contains(., $singlequote) or contains(., $doublequote)">
 						<xsl:value-of select="$quotation"/>
 						<!--<xsl:value-of select="." disable-output-escaping="no"/>-->
-						<xsl:call-template name="escape-xml">
+						<xsl:call-template name="escape-xml-attributes">
 							<xsl:with-param name="text" select="."/>
 						</xsl:call-template>
 						<xsl:value-of select="$quotation"/>
@@ -318,25 +322,26 @@
 	<xsl:template match="text()">
 		<xsl:value-of select="."/>
 	</xsl:template>
-	<!-- Function from Pavel Minaev, StackOverflow CC-BY-SA -->
-	<!-- http://stackoverflow.com/questions/1162352/converting-xml-to-escaped-text-in-xslt -->
-	<xsl:template name="escape-xml">
+	<xsl:template name="escape-xml-attributes">
 		<xsl:param name="text"/>
-		<xsl:if test="$text != ''">
-			<xsl:variable name="head" select="substring($text, 1, 1)"/>
-			<xsl:variable name="tail" select="substring($text, 2)"/>
+		<xsl:if test="string-length($text) &gt; 0">
+			<xsl:variable name="character" select="substring($text, 1, 1)"/>
 			<xsl:choose>
-				<xsl:when test="$head = '&amp;'">&amp;amp;</xsl:when>
-				<xsl:when test="$head = '&lt;'">&amp;lt;</xsl:when>
-				<xsl:when test="$head = '&gt;'">&amp;gt;</xsl:when>
-				<xsl:when test="$head = '&quot;'">&amp;quot;</xsl:when>
-				<xsl:when test="$head = &quot;&apos;&quot;">&amp;apos;</xsl:when>
+				<xsl:when test="$character = $doublequote">
+					<xsl:text disable-output-escaping="yes"><![CDATA[&quot;]]></xsl:text>
+				</xsl:when>
+				<xsl:when test="$character = $singlequote">
+					<xsl:text disable-output-escaping="yes"><![CDATA[&apos;]]></xsl:text>
+				</xsl:when>
+				<xsl:when test="$character = '&gt;'">
+					<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
+				</xsl:when>
 				<xsl:otherwise>
-					<xsl:value-of select="$head"/>
+					<xsl:value-of select="$character"/>
 				</xsl:otherwise>
 			</xsl:choose>
-			<xsl:call-template name="escape-xml">
-				<xsl:with-param name="text" select="$tail"/>
+			<xsl:call-template name="escape-xml-attributes">
+				<xsl:with-param name="text" select="substring($text, 2)"/>
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
