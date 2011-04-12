@@ -7,10 +7,7 @@
 -->
 <!-- TODO:
 	- Set up some tests for this
-	- Finish commenting variables and the final templates
 	- Sort out the xml:lang attribute not validation
-	- Case insensitivity for the Boolean attributes
-	- Attribute ordering for better compressability?
 -->
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<xsl:output method="html"/>
@@ -340,7 +337,12 @@
 	[SPEC] If the attribute is present, its value must either be the empty string or a value that is an ASCII case-insensitive match for the attribute's canonical name, with no leading or trailing whitespace. -->
 	<xsl:template match="@compact | @checked | @declare | @readonly | @disabled | @selected | @defer | @ismap | @nohref | @noshade | @nowrap | @multiple | @noresize">
 		<!-- Display the attribute name if the value is a case-insensitive match to the name (the case where the attribute value is empty is handled by the previous template). -->
-		<xsl:if test=". = name()">
+		<xsl:variable name="lower-cast-text">
+			<xsl:call-template name="to-lower-case">
+				<xsl:with-param name="text" select="."/>
+			</xsl:call-template>
+		</xsl:variable>
+		<xsl:if test="$lower-cast-text = name()">
 			<xsl:text> </xsl:text>
 			<xsl:value-of select="name()"/>
 		</xsl:if>
@@ -451,5 +453,15 @@
 				<xsl:with-param name="text" select="substring($text, 2)"/>
 			</xsl:call-template>
 		</xsl:if>
+	</xsl:template>
+	<!--
+
+	to-lower-case
+	Returns the input in lower case. -->
+	<xsl:template name="to-lower-case">
+		<xsl:param name="text"/>
+		<xsl:variable name="lower-case" select="'abcdefghijklmnopqrstuvwxyz'"/>
+		<xsl:variable name="upper-case" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'"/>
+		<xsl:value-of select="translate($text, $upper-case, $lower-case)"/>
 	</xsl:template>
 </xsl:stylesheet>
