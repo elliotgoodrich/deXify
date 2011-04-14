@@ -4,6 +4,7 @@
 	Author: Elliot Goodrich <http://elliotgoodri.ch/>
 	License: CC0 Public Domain Dedication <http://creativecommons.org/publicdomain/zero/1.0/>
 	Description: An XSLT to transform XHTML into valid, file size optimised HTML5.
+	Note: All comments starting with [SPEC] are taken from the HTML5 specification <http://dev.w3.org/html5/spec/spec.html>
 -->
 <!-- TODO:
 	- Set up some tests for this
