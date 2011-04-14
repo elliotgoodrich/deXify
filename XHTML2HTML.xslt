@@ -340,12 +340,12 @@
 	[SPEC] If the attribute is present, its value must either be the empty string or a value that is an ASCII case-insensitive match for the attribute's canonical name, with no leading or trailing whitespace. -->
 	<xsl:template match="@compact | @checked | @declare | @readonly | @disabled | @selected | @defer | @ismap | @nohref | @noshade | @nowrap | @multiple | @noresize">
 		<!-- Display the attribute name if the value is a case-insensitive match to the name (the case where the attribute value is empty is handled by the previous template). -->
-		<xsl:variable name="lower-cast-text">
+		<xsl:variable name="lower-case-text">
 			<xsl:call-template name="to-lower-case">
 				<xsl:with-param name="text" select="."/>
 			</xsl:call-template>
 		</xsl:variable>
-		<xsl:if test="$lower-cast-text = name()">
+		<xsl:if test="$lower-case-text = name()">
 			<xsl:text> </xsl:text>
 			<xsl:value-of select="name()"/>
 		</xsl:if>
