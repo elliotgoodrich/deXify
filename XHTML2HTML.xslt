@@ -6,12 +6,6 @@
 	Description: An XSLT to transform XHTML into valid, file size optimised HTML5.
 	Note: All comments starting with [SPEC] are taken from the HTML5 specification <http://dev.w3.org/html5/spec/spec.html>
 -->
-<!-- TODO:
-	- Set up some tests for this
-	- Check that we don't require xhtml:node() instead of just node() (now would be a pretty good time to do those tests!)
-	- Only include proper HTML5 nodes and attributes
-	- Do a 2nd version to transform HTML5 in XML format to file size optimised HTML5 (i.e. remove namespaces)
--->
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 	<xsl:output method="html"/>
 	<!-- Variable for a single quotation symbol -->
