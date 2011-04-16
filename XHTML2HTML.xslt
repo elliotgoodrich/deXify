@@ -31,7 +31,7 @@
 		<xsl:if test="attribute::*">
 			<xsl:text disable-output-escaping="yes"><![CDATA[<html]]></xsl:text>
 			<xsl:apply-templates select="@*">
-				<xsl:sort select="name()"/>
+				<xsl:sort select="local-name()"/>
 			</xsl:apply-templates>
 			<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
 		</xsl:if>
@@ -48,7 +48,7 @@
 		<xsl:if test="attribute::* or (node() and node()[1][not(self::xhtml:*)])">
 			<xsl:text disable-output-escaping="yes"><![CDATA[<head]]></xsl:text>
 			<xsl:apply-templates select="@*">
-				<xsl:sort select="name()"/>
+				<xsl:sort select="local-name()"/>
 			</xsl:apply-templates>
 			<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
 		</xsl:if>
@@ -65,7 +65,7 @@
 		<xsl:if test="attribute::* or (node() and node()[1][self::xhtml:script or self::xhtml:style])">
 			<xsl:text disable-output-escaping="yes"><![CDATA[<body]]></xsl:text>
 			<xsl:apply-templates select="@*">
-				<xsl:sort select="name()"/>
+				<xsl:sort select="local-name()"/>
 			</xsl:apply-templates>
 			<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
 		</xsl:if>
@@ -79,7 +79,7 @@
 	<xsl:template match="xhtml:p">
 		<xsl:text disable-output-escaping="yes"><![CDATA[<p]]></xsl:text>
 		<xsl:apply-templates select="@*">
-			<xsl:sort select="name()"/>
+			<xsl:sort select="local-name()"/>
 		</xsl:apply-templates>
 		<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
 		<xsl:apply-templates/>
@@ -95,7 +95,7 @@
 	<xsl:template match="xhtml:li">
 		<xsl:text disable-output-escaping="yes"><![CDATA[<li]]></xsl:text>
 		<xsl:apply-templates select="@*">
-			<xsl:sort select="name()"/>
+			<xsl:sort select="local-name()"/>
 		</xsl:apply-templates>
 		<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
 		<xsl:apply-templates/>
@@ -111,7 +111,7 @@
 	<xsl:template match="xhtml:dt">
 		<xsl:text disable-output-escaping="yes"><![CDATA[<dt]]></xsl:text>
 		<xsl:apply-templates select="@*">
-			<xsl:sort select="name()"/>
+			<xsl:sort select="local-name()"/>
 		</xsl:apply-templates>
 		<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
 		<xsl:apply-templates/>
@@ -127,7 +127,7 @@
 	<xsl:template match="xhtml:dd">
 		<xsl:text disable-output-escaping="yes"><![CDATA[<dd]]></xsl:text>
 		<xsl:apply-templates select="@*">
-			<xsl:sort select="name()"/>
+			<xsl:sort select="local-name()"/>
 		</xsl:apply-templates>
 		<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
 		<xsl:apply-templates/>
@@ -142,16 +142,16 @@
 	[SPEC] An rt/rp element's end tag may be omitted if the rt/rp element is immediately followed by an rt or rp element, or if there is no more content in the parent element. -->
 	<xsl:template match="xhtml:rt | xhtml:rp">
 		<xsl:text disable-output-escaping="yes"><![CDATA[<]]></xsl:text>
-		<xsl:value-of select="name()"/>
+		<xsl:value-of select="local-name()"/>
 		<xsl:apply-templates select="@*">
-			<xsl:sort select="name()"/>
+			<xsl:sort select="local-name()"/>
 		</xsl:apply-templates>
 		<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
 		<xsl:apply-templates/>
 		<!-- An rt/rp element's end tag is only required if the rt/rp element is not immediately followed by an rt or rp element and if there is more content in the parent element. -->
 		<xsl:if test="not(following-sibling::node()[1][self::xhtml:rt or self::xhtml:rp]) and following-sibling::node()">
 			<xsl:text disable-output-escaping="yes"><![CDATA[</]]></xsl:text>
-			<xsl:value-of select="name()"/>
+			<xsl:value-of select="local-name()"/>
 			<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
 		</xsl:if>
 	</xsl:template>
@@ -162,7 +162,7 @@
 	<xsl:template match="xhtml:optgroup">
 		<xsl:text disable-output-escaping="yes"><![CDATA[<optgroup]]></xsl:text>
 		<xsl:apply-templates select="@*">
-			<xsl:sort select="name()"/>
+			<xsl:sort select="local-name()"/>
 		</xsl:apply-templates>
 		<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
 		<xsl:apply-templates/>
@@ -178,7 +178,7 @@
 	<xsl:template match="xhtml:option">
 		<xsl:text disable-output-escaping="yes"><![CDATA[<option]]></xsl:text>
 		<xsl:apply-templates select="@*">
-			<xsl:sort select="name()"/>
+			<xsl:sort select="local-name()"/>
 		</xsl:apply-templates>
 		<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
 		<xsl:apply-templates/>
@@ -197,7 +197,7 @@
 		<xsl:if test="not(preceding-sibling::node()[1][self::xhtml:colgroup]) ">
 			<xsl:text disable-output-escaping="yes"><![CDATA[<colgroup]]></xsl:text>
 			<xsl:apply-templates select="@*">
-				<xsl:sort select="name()"/>
+				<xsl:sort select="local-name()"/>
 			</xsl:apply-templates>
 			<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
 		</xsl:if>
@@ -211,7 +211,7 @@
 	<xsl:template match="xhtml:thead">
 		<xsl:text disable-output-escaping="yes"><![CDATA[<thead]]></xsl:text>
 		<xsl:apply-templates select="@*">
-			<xsl:sort select="name()"/>
+			<xsl:sort select="local-name()"/>
 		</xsl:apply-templates>
 		<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
 		<xsl:apply-templates/>
@@ -230,7 +230,7 @@
 		<xsl:if test="not(node()[1][self::xhtml:tr]) or preceding-sibling::node()[1][self::xhtml:tbody or self::xhtml:thead or self::xhtml:tfoot]">
 			<xsl:text disable-output-escaping="yes"><![CDATA[<tbody]]></xsl:text>
 			<xsl:apply-templates select="@*">
-				<xsl:sort select="name()"/>
+				<xsl:sort select="local-name()"/>
 			</xsl:apply-templates>
 			<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
 		</xsl:if>
@@ -247,7 +247,7 @@
 	<xsl:template match="xhtml:tfoot">
 		<xsl:text disable-output-escaping="yes"><![CDATA[<tfoot]]></xsl:text>
 		<xsl:apply-templates select="@*">
-			<xsl:sort select="name()"/>
+			<xsl:sort select="local-name()"/>
 		</xsl:apply-templates>
 		<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
 		<xsl:apply-templates/>
@@ -263,7 +263,7 @@
 	<xsl:template match="xhtml:tr">
 		<xsl:text disable-output-escaping="yes"><![CDATA[<tr]]></xsl:text>
 		<xsl:apply-templates select="@*">
-			<xsl:sort select="name()"/>
+			<xsl:sort select="local-name()"/>
 		</xsl:apply-templates>
 		<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
 		<xsl:apply-templates/>
@@ -278,16 +278,16 @@
 	[SPEC] A td/th element's end tag may be omitted if the td/th element is immediately followed by a td or th element, or if there is no more content in the parent element. -->
 	<xsl:template match="xhtml:td | xhtml:th">
 		<xsl:text disable-output-escaping="yes"><![CDATA[<]]></xsl:text>
-		<xsl:value-of select="name()"/>
+		<xsl:value-of select="local-name()"/>
 		<xsl:apply-templates select="@*">
-			<xsl:sort select="name()"/>
+			<xsl:sort select="local-name()"/>
 		</xsl:apply-templates>
 		<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
 		<xsl:apply-templates/>
 		<!-- A td/th element's end tag is only required if the td/th element isn't immediately followed by a td or th element and there is more content in the parent element. -->
 		<xsl:if test="not(following-sibling::node()[1][self::xhtml:td or self::xhtml:th]) and following-sibling::node()">
 			<xsl:text disable-output-escaping="yes"><![CDATA[</]]></xsl:text>
-			<xsl:value-of select="name()"/>
+			<xsl:value-of select="local-name()"/>
 			<xsl:text disable-output-escaping="yes"><![CDATA[<]]></xsl:text>
 		</xsl:if>
 	</xsl:template>
@@ -297,9 +297,9 @@
 	[SPEC] Void elements only have a start tag; end tags must not be specified for void elements. -->
 	<xsl:template match="xhtml:area | xhtml:base | xhtml:br | xhtml:col | xhtml:command | xhtml:embed | xhtml:hr | xhtml:img | xhtml:input | xhtml:keygen | xhtml:link | xhtml:meta | xhtml:param | xhtml:source | xhtml:track | xhtml:wbr">
 		<xsl:text disable-output-escaping="yes"><![CDATA[<]]></xsl:text>
-		<xsl:value-of select="name()"/>
+		<xsl:value-of select="local-name()"/>
 		<xsl:apply-templates select="@*">
-			<xsl:sort select="name()"/>
+			<xsl:sort select="local-name()"/>
 		</xsl:apply-templates>
 		<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
 	</xsl:template>
@@ -309,14 +309,14 @@
 	[SPEC] The start and end tags of certain normal elements can be omitted, as described later. Those that cannot be omitted must not be omitted. -->
 	<xsl:template match="*">
 		<xsl:text disable-output-escaping="yes"><![CDATA[<]]></xsl:text>
-		<xsl:value-of select="name()"/>
+		<xsl:value-of select="local-name()"/>
 		<xsl:apply-templates select="@*">
-			<xsl:sort select="name()"/>
+			<xsl:sort select="local-name()"/>
 		</xsl:apply-templates>
 		<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
 		<xsl:apply-templates/>
 		<xsl:text disable-output-escaping="yes"><![CDATA[</]]></xsl:text>
-		<xsl:value-of select="name()"/>
+		<xsl:value-of select="local-name()"/>
 		<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
 	</xsl:template>
 	<!--
@@ -325,7 +325,7 @@
 	[SPEC] Just the attribute name. The value is implicitly the empty string. -->
 	<xsl:template match="@*[. = '']">
 		<xsl:text> </xsl:text>
-		<xsl:value-of select="name()"/>
+		<xsl:value-of select="local-name()"/>
 	</xsl:template>
 	<!--
 
@@ -339,9 +339,9 @@
 				<xsl:with-param name="text" select="."/>
 			</xsl:call-template>
 		</xsl:variable>
-		<xsl:if test="$lower-case-text = name()">
+		<xsl:if test="$lower-case-text = local-name()">
 			<xsl:text> </xsl:text>
-			<xsl:value-of select="name()"/>
+			<xsl:value-of select="local-name()"/>
 		</xsl:if>
 	</xsl:template>
 	<!--
@@ -350,7 +350,7 @@
 	[SPEC] Attribute values are a mixture of text and character references, except with the additional restriction that the text cannot contain an ambiguous ampersand. -->
 	<xsl:template match="@*">
 		<xsl:text> </xsl:text>
-		<xsl:value-of select="name()"/>
+		<xsl:value-of select="local-name()"/>
 		<xsl:text>=</xsl:text>
 		<xsl:choose>
 			<!--
