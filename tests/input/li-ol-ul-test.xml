@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<test xmlns="http://www.w3.org/1999/xhtml">
+	<ul>
+		<li>item 1</li>
+		<li>item 2</li>
+		<p>this isn't allowed</p>
+		<li>item 3</li>
+	</ul>
+	<ol>
+		<li>item 1b</li>
+		<li>item 2b</li>
+		<p>this still isn't allowed</p>
+		<li>item 3b</li>
+	</ol>
+</test>

@@ -1,5 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- an empty body element should be removed -->
-<html xmlns="http://www.w3.org/1999/xhtml">
-	<body></body>
-</html>
+<?xml version="1.0"?>
+<test xmlns="http://www.w3.org/1999/xhtml">
+	<head></head>
+	<head>text</head>
+	<head attribute="hello"/>
+	<head>
+		<element/>
+	</head>
+</test>
