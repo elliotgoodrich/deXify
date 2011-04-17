@@ -37,11 +37,12 @@ for inputfilename in os.listdir(inputdir):
 
     # get the expected output
     f = open(os.path.join(outputdir, outputfilename), "r")
-    expectedoutput = f.read()
+    expectedoutput = f.read().strip()
 
     # exit with failed status if they are not equal
     if testoutput != expectedoutput:
-        print "Test " + inputfilename + " failed" 
+        print "Test " + inputfilename + " failed\n"
+        print testoutput
         sys.exit(1)
 
 # exit with passed status
