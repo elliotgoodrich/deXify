@@ -8,16 +8,17 @@ import re
 import sys
 from lxml import etree
 
-# directories
+# directories and files
 testdir = "tests"
 inputdir = os.path.join(testdir, "input")
 outputdir = os.path.join(testdir, "output")
+XSLTfile = "XHTML2HTML.xslt"
 
 # load the regex to get the file name without the extension
 pattern = re.compile("^(.+)\.xml$")
 
 # load the XSLT
-f = open("XHTML2HTML.xslt", "r")
+f = open(XSLTfile, "r")
 xsltdoc = etree.parse(f)
 transform = etree.XSLT(xsltdoc)
 
