@@ -12,7 +12,7 @@ from lxml import etree
 testdir = "tests"
 inputdir = os.path.join(testdir, "input")
 outputdir = os.path.join(testdir, "output")
-XSLTfile = "XHTML2HTML.xslt"
+XSLTfile = "deXify.xslt"
 
 # load the regex to get the file name without the extension
 pattern = re.compile("^(.+)\.xml$")
