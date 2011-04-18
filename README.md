@@ -7,3 +7,5 @@ Todo
 ----
 
 * Write more tests
+* Go through microdata spec and add in new attributes/elements (e.g. the itemscope attribute is a boolean one)
+* Go through MathML spec and SVG spec and see if there is anything we can do
