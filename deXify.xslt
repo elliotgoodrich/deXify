@@ -6,7 +6,7 @@
 	Description: An XSLT to transform XHTML into valid, file size optimised HTML5.
 	Note: All comments starting with [SPEC] are taken from the HTML5 specification <http://dev.w3.org/html5/spec/spec.html>
 -->
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mathml="http://www.w3.org/1998/Math/MathML">
 	<xsl:output method="html"/>
 	<xsl:strip-space elements="*"/>
 	<!-- Variable for a single quotation symbol -->
