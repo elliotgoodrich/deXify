@@ -45,7 +45,7 @@ for inputfilename in os.listdir(inputdir):
 
     # exit with failed status if they are not equal
     if testoutput != expectedoutput:
-        print "Test " + inputfilename + " failed"
+        print "Test " + inputfilename + " failed :("
         print "-- Output -------------\n" + testoutput
         print "-- Expected output ----\n" + expectedoutput
         sys.exit(1)
