@@ -9,10 +9,9 @@ import sys
 from lxml import etree
 
 # directories and files
-testdir = "tests"
-inputdir = os.path.join(testdir, "input")
-outputdir = os.path.join(testdir, "output")
-XSLTfile = "deXify.xslt"
+inputdir = "input"
+outputdir = "output"
+XSLTfile = "../deXify.xslt"
 
 # test counter
 testcount = 0
