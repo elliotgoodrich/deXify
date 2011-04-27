@@ -4,7 +4,9 @@
 	Author: Elliot Goodrich <http://elliotgoodri.ch/>
 	License: CC0 Public Domain Dedication <http://creativecommons.org/publicdomain/zero/1.0/>
 	Description: An XSLT to transform XHTML into valid, file size optimised HTML5.
-	Note: All comments starting with [SPEC] are taken from the HTML5 specification <http://dev.w3.org/html5/spec/spec.html>
+	Note:
+	- All comments starting with [SPEC] are taken from the HTML5 specification <http://dev.w3.org/html5/spec/spec.html>
+	- All comments starting with [MICRO] are taken from the HTML5 Microdata specification <http://www.w3.org/TR/html5/microdata.html>
 -->
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mathml="http://www.w3.org/1998/Math/MathML">
 	<xsl:output method="html"/>
@@ -332,7 +334,8 @@
 
 	Boolean attributes
 	[SPEC] A number of attributes are boolean attributes. The presence of a boolean attribute on an element represents the true value, and the absence of the attribute represents the false value. 
-	[SPEC] If the attribute is present, its value must either be the empty string or a value that is an ASCII case-insensitive match for the attribute's canonical name, with no leading or trailing whitespace. -->
+	[SPEC] If the attribute is present, its value must either be the empty string or a value that is an ASCII case-insensitive match for the attribute's canonical name, with no leading or trailing whitespace.
+	[MICRO] The itemscope attribute is a boolean attribute. -->
 	<xsl:template match="@compact | @checked | @declare | @readonly | @disabled | @selected | @defer | @ismap | @nohref | @noshade | @nowrap | @multiple | @noresize | @itemscope">
 		<!-- Display the attribute name if the value is a case-insensitive match to the name (the case where the attribute value is empty is handled by the previous template). -->
 		<xsl:variable name="lower-case-text">
