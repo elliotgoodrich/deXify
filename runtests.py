@@ -14,6 +14,9 @@ inputdir = os.path.join(testdir, "input")
 outputdir = os.path.join(testdir, "output")
 XSLTfile = "deXify.xslt"
 
+# test counter
+testcount = 0
+
 # load the regex to get the file name without the extension
 pattern = re.compile("^(.+)\.xml$")
 
@@ -47,6 +50,10 @@ for inputfilename in os.listdir(inputdir):
         print "-- Expected output ----\n" + expectedoutput
         sys.exit(1)
 
+    # otherwise incremant the test counter
+    else:
+        testcount += 1
+
 # exit with passed status
-print "All tests passed :)"
+print "All " + str(testcount) + " tests passed :)"
 sys.exit(0)
