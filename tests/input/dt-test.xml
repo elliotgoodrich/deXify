@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<test xmlns="http://www.w3.org/1999/xhtml">
+	<dt>end tag required</dt>
+	<element>element</element>
+	<dt>end tag not required</dt>
+	<dt>end tag not required</dt>
+	<dd>dd</dd>
+	<dt>end tag required</dt>
+</test>
