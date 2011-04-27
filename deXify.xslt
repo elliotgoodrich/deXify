@@ -366,7 +366,7 @@
 			<!--
 			Double-quoted attribute value syntax
 			[SPEC] ... must not contain any literal U+0022 QUOTATION MARK characters (").
-			Use double quotes only when the number of double quotes is less than the number of apostrophes. -->
+			Use double quotes only when the number of double quotes is fewer than the number of apostrophes. -->
 			<xsl:when test="string-length(translate(., $singlequote, '')) &lt; string-length(translate(., $doublequote, ''))">
 				<xsl:value-of select="$doublequote"/>
 				<xsl:call-template name="escape-quotes">
