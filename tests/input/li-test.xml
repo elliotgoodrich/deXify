@@ -3,9 +3,9 @@
 	<ul>
 		<li>item 1</li>
 		<li>item 2</li>
-		<p>this isn't allowed</p>
+		<randomelement>this isn't allowed</randomelement>
 		<li>item 3</li>
-		<li><span>spanned item</span></li>
+		<li><randomelement>spanned item</randomelement></li>
 		<li>item 4</li>
 	</ul>
 </test>
