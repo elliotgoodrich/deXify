@@ -87,7 +87,7 @@
 		<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
 		<xsl:apply-templates/>
 		<!-- A p element's end tag is only required if the element is not immediately followed by an address, ..., table or ul element, and either there is more content in the parent element or the parent element is an a element. -->
-		<xsl:if test="not(following-sibling::node()[1][self::xhtml:p or self::xhtml:address or self::xhtml:article or self::xhtml:aside or self::xhtml:aside or self::xhtml:blockquote or self::xhtml:dir or self::xhtml:div or self::xhtml:dl or self::xhtml:fieldset or self::xhtml:footer or self::xhtml:form or self::xhtml:h1 or self::xhtml:h2 or self::xhtml:h3 or self::xhtml:h4 or self::xhtml:h5 or self::xhtml:h6 or self::xhtml:header or self::xhtml:hgroup or self::xhtml:hr or self::xhtml:menu or self::xhtml:nav or self::xhtml:ol or self::xhtml:pre or self::xhtml:section or self::xhtml:table or self::xhtml:ul]) and (following-sibling::node() or parent::xhtml:a)">
+		<xsl:if test="not(following-sibling::node()[1][self::xhtml:p or self::xhtml:address or self::xhtml:article or self::xhtml:aside or self::xhtml:blockquote or self::xhtml:dir or self::xhtml:div or self::xhtml:dl or self::xhtml:fieldset or self::xhtml:footer or self::xhtml:form or self::xhtml:h1 or self::xhtml:h2 or self::xhtml:h3 or self::xhtml:h4 or self::xhtml:h5 or self::xhtml:h6 or self::xhtml:header or self::xhtml:hgroup or self::xhtml:hr or self::xhtml:menu or self::xhtml:nav or self::xhtml:ol or self::xhtml:pre or self::xhtml:section or self::xhtml:table or self::xhtml:ul]) and (following-sibling::node() or parent::xhtml:a)">
 			<xsl:text disable-output-escaping="yes"><![CDATA[</p>]]></xsl:text>
 		</xsl:if>
 	</xsl:template>
