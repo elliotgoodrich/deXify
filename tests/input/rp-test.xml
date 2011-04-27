@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<test xmlns="http://www.w3.org/1999/xhtml">
+	<rp>end tag not required</rp>
+	<rp>end tag not required</rp>
+	<rt>rt</rt>
+	<element>element</element>
+	<rp>end tag required</rp>
+	<element>element</element>
+	<rp>end tag not required</rp>
+</test>
