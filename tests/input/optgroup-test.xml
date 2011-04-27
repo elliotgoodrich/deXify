@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<test xmlns="http://www.w3.org/1999/xhtml">
+	<optgroup>end tag not required</optgroup>
+	<optgroup>end tag required</optgroup>
+	<element>element</element>
+	<optgroup>end tag not required</optgroup>
+</test>
