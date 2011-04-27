@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<test xmlns="http://www.w3.org/1999/xhtml">
+	<parent>
+		<p>end tag not required</p>
+		<p>end tag not required</p>
+		<address>address</address>
+		<p>end tag not required</p>
+		<article>article</article>
+		<p>end tag not required</p>
+		<aside>aside</aside>
+		<p>end tag not required</p>
+		<blockquote>blockquote</blockquote>
+		<p>end tag not required</p>
+		<dir>dir</dir>
+		<p>end tag not required</p>
+		<div>div</div>
+		<p>end tag not required</p>
+		<dl>dl</dl>
+		<p>end tag not required</p>
+		<fieldset>fieldset</fieldset>
+		<p>end tag not required</p>
+		<footer>footer</footer>
+		<p>end tag not required</p>
+		<form>form</form>
+		<p>end tag not required</p>
+		<h1>h1</h1>
+		<p>end tag not required</p>
+		<h2>h2</h2>
+		<p>end tag not required</p>
+		<h3>h3</h3>
+		<p>end tag not required</p>
+		<h4>h4</h4>
+		<p>end tag not required</p>
+		<h5>h5</h5>
+		<p>end tag not required</p>
+		<h6>h6</h6>
+		<p>end tag not required</p>
+		<header>header</header>
+		<p>end tag not required</p>
+		<hgroup>hgroup</hgroup>
+		<p>end tag not required</p>
+		<hr />
+		<p>end tag not required</p>
+		<menu>menu</menu>
+		<p>end tag not required</p>
+		<nav>nav</nav>
+		<p>end tag not required</p>
+		<ol>ol</ol>
+		<p>end tag not required</p>
+		<pre>pre</pre>
+		<p>end tag not required</p>
+		<section>section</section>
+		<p>end tag not required</p>
+		<table>table</table>
+		<p>end tag not required</p>
+		<ul>ul</ul>
+		<p>end tag not required</p>
+		<p>end tag required</p>
+		<span>span</span>
+	</parent>
+	<a>
+		<p>end tag required</p>
+		<p>end tag required</p>
+		<span><p>end tag not required</p></span>
+	</a>
+</test>
