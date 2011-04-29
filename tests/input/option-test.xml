@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<test xmlns="http://www.w3.org/1999/xhtml">
+	<option>end tag not required</option>
+	<option>end tag not required</option>
+	<optgroup>optgroup</optgroup>
+	<option>end tag required</option>
+	<element>element</element>
+	<option>end tag not required</option>
+</test>
