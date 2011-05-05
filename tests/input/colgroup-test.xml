@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<test xmlns="http://www.w3.org/1999/xhtml">
+	<colgroup attribute="value">start tag required, end tag not</colgroup>
+	<!-- comment -->
+	<colgroup>start tag required, end tag not</colgroup>
+	<colgroup><col></col>colgroup start tag required, end tag not required</colgroup>
+	<colgroup>start tag required, end tag not</colgroup>
+	<colgroup>start tag required, end tag not</colgroup>
+	<element>element</element>
+	<colgroup><col></col>colgroup start tag not required, end tag not required</colgroup>
+	<element>element</element>
+	<colgroup attribute="value"><col></col>colgroup start tag required, end tag not</colgroup>
+</test>
