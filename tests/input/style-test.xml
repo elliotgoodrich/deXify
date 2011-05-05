@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<test xmlns="http://www.w3.org/1999/xhtml">
+	<style>These shouldn't be escaped: &amp;, &apos;, &gt;, &lt;, &quot;.</style>
+	<style><element>These should be escaped: &amp;, &gt;, &lt;.</element> These shouldn't be escaped: &amp;, &apos;, &gt;, &lt;, &quot;.</style>
+	<style>Start tag and end tag required.</style>
+</test>
