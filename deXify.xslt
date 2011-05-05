@@ -196,8 +196,8 @@
 	[SPEC] A colgroup element's start tag may be omitted if the first thing inside the colgroup element is a col element, and if the element is not immediately preceded by another colgroup element whose end tag has been omitted. (It can't be omitted if the element is empty.)
 	[SPEC] A colgroup element's end tag may be omitted if the colgroup element is not immediately followed by a space character or a comment. -->
 	<xsl:template match="xhtml:colgroup">
-		<!-- A colgroup element's start tag is only required if the first thing inside the colgroup element isn't a col element or the preceeding node is a colgroup element or the element has attributes. -->
-		<xsl:if test="not(node()[1][self::xhtml:col]) or preceding-sibling::node()[1][self::xhtml:colgroup] or attribute::*">
+		<!-- A colgroup element's start tag is only required if the element has attributes, or if the first thing inside the colgroup element isn't a col element or the preceeding node is a colgroup element. -->
+		<xsl:if test="attribute::* or not(node()[1][self::xhtml:col]) or preceding-sibling::node()[1][self::xhtml:colgroup]">
 			<xsl:text disable-output-escaping="yes"><![CDATA[<colgroup]]></xsl:text>
 			<xsl:apply-templates select="@*">
 				<xsl:sort select="local-name()"/>
