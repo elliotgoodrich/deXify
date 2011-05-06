@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<test xmlns="http://www.w3.org/1999/xhtml">
+	<tfoot>start tag required, end tag required</tfoot>
+	<tfoot>start tag required, end tag required</tfoot>
+	<element>element</element>
+	<tfoot>start tag required, end tag not required</tfoot>
+	<tbody>tbody</tbody>
+	<tfoot>start tag required, end tag not required</tfoot>
+</test>
