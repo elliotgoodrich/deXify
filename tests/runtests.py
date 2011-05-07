@@ -6,7 +6,11 @@
 import os
 import re
 import sys
+import time
 from lxml import etree
+
+# start the clock
+time_started = time.time()
 
 # directories and files
 input_dir = "input"
@@ -61,9 +65,12 @@ for input_filename in os.listdir(input_dir):
         else:
             passed_tests += 1
 
+time_taken = round(100 * (time.time() - time_started), 2)
+
 # exit with passed status
 if skipped_tests == 0:
     print "All " + str(passed_tests) + " tests passed :)"
 else:
     print str(passed_tests) + " tests passed and " + str(skipped_tests) + " tests skipped"
+print "Time taken ~" + str(time_taken) + "ms"
 sys.exit(0)
