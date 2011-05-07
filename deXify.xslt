@@ -15,6 +15,8 @@
 	<xsl:variable name="singlequote">'</xsl:variable>
 	<!-- Variable for a double quotation symbol -->
 	<xsl:variable name="doublequote">"</xsl:variable>
+	<!-- Variable for banned quote-less attribute characters -->
+	<xsl:variable name="banned-quote-less-attribute-characters" select="concat(' =&lt;&gt;`', $doublequote, $singlequote)"/>
 	<!--
 
 	/
@@ -360,7 +362,7 @@
 			<!--
 			Unquoted attribute value syntax
 			[SPEC] ... must not contain any literal space characters, any U+0022 QUOTATION MARK characters ("), U+0027 APOSTROPHE characters ('), U+003D EQUALS SIGN characters (=), U+003C LESS-THAN SIGN characters (<), U+003E GREATER-THAN SIGN characters (>), or U+0060 GRAVE ACCENT characters (`), and must not be the empty string. -->
-			<xsl:when test="not(contains(., ' ') or contains(., $doublequote) or contains(., $singlequote) or contains(., '=') or contains(., '&lt;') or contains(., '&gt;') or contains(., '`'))">
+			<xsl:when test="string-length(translate(., $banned-quote-less-attribute-characters, '')) = string-length(.)">
 				<xsl:value-of select="."/>
 			</xsl:when>
 			<!--
@@ -419,14 +421,8 @@
 				<xsl:when test="$character = $singlequote">
 					<xsl:text disable-output-escaping="yes"><![CDATA[&apos;]]></xsl:text>
 				</xsl:when>
-				<xsl:when test="$character = '&gt;'">
-					<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
-				</xsl:when>
-				<xsl:when test="$character = '&lt;'">
-					<xsl:text disable-output-escaping="yes"><![CDATA[<]]></xsl:text>
-				</xsl:when>
 				<xsl:otherwise>
-					<xsl:value-of select="$character"/>
+					<xsl:value-of select="$character" disable-output-escaping="yes"/>
 				</xsl:otherwise>
 			</xsl:choose>
 			<xsl:call-template name="escape-apostrophes">
@@ -450,14 +446,8 @@
 				<xsl:when test="$character = $doublequote">
 					<xsl:text disable-output-escaping="yes"><![CDATA[&quot;]]></xsl:text>
 				</xsl:when>
-				<xsl:when test="$character = '&gt;'">
-					<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
-				</xsl:when>
-				<xsl:when test="$character = '&lt;'">
-					<xsl:text disable-output-escaping="yes"><![CDATA[<]]></xsl:text>
-				</xsl:when>
 				<xsl:otherwise>
-					<xsl:value-of select="$character"/>
+					<xsl:value-of select="$character" disable-output-escaping="yes"/>
 				</xsl:otherwise>
 			</xsl:choose>
 			<xsl:call-template name="escape-quotes">
