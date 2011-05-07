@@ -15,6 +15,10 @@
 	<xsl:variable name="singlequote">'</xsl:variable>
 	<!-- Variable for a double quotation symbol -->
 	<xsl:variable name="doublequote">"</xsl:variable>
+	<!-- Variable for banned characters in single quoted attributes -->
+	<xsl:variable name="banned-single-quote-attribute-characters" select="concat('&lt;&gt;', $singlequote)"/>
+	<!-- Variable for banned characters in double quoted attributes -->
+	<xsl:variable name="banned-double-quote-attribute-characters" select="concat('&lt;&gt;', $doublequote)"/>
 	<!-- Variable for banned quote-less attribute characters -->
 	<xsl:variable name="banned-quote-less-attribute-characters" select="concat(' =&lt;&gt;`', $doublequote, $singlequote)"/>
 	<!--
@@ -415,20 +419,25 @@
 	for attribute values -->
 	<xsl:template name="escape-apostrophes">
 		<xsl:param name="text"/>
-		<xsl:if test="string-length($text) &gt; 0">
-			<xsl:variable name="character" select="substring($text, 1, 1)"/>
-			<xsl:choose>
-				<xsl:when test="$character = $singlequote">
-					<xsl:text disable-output-escaping="yes"><![CDATA[&apos;]]></xsl:text>
-				</xsl:when>
-				<xsl:otherwise>
-					<xsl:value-of select="$character" disable-output-escaping="yes"/>
-				</xsl:otherwise>
-			</xsl:choose>
-			<xsl:call-template name="escape-apostrophes">
-				<xsl:with-param name="text" select="substring($text, 2)"/>
-			</xsl:call-template>
-		</xsl:if>
+		<xsl:choose>
+			<xsl:when test="string-length(translate($text, $banned-single-quote-attribute-characters, '')) &lt; string-length($text)">
+				<xsl:variable name="character" select="substring($text, 1, 1)"/>
+				<xsl:choose>
+					<xsl:when test="$character = $singlequote">
+						<xsl:text disable-output-escaping="yes"><![CDATA[&apos;]]></xsl:text>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:value-of select="$character" disable-output-escaping="yes"/>
+					</xsl:otherwise>
+				</xsl:choose>
+				<xsl:call-template name="escape-apostrophes">
+					<xsl:with-param name="text" select="substring($text, 2)"/>
+				</xsl:call-template>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:value-of select="$text"/>
+			</xsl:otherwise>
+		</xsl:choose>
 	</xsl:template>
 	<!--
 
@@ -440,20 +449,25 @@
 	for attribute values -->
 	<xsl:template name="escape-quotes">
 		<xsl:param name="text"/>
-		<xsl:if test="string-length($text) &gt; 0">
-			<xsl:variable name="character" select="substring($text, 1, 1)"/>
-			<xsl:choose>
-				<xsl:when test="$character = $doublequote">
-					<xsl:text disable-output-escaping="yes"><![CDATA[&quot;]]></xsl:text>
-				</xsl:when>
-				<xsl:otherwise>
-					<xsl:value-of select="$character" disable-output-escaping="yes"/>
-				</xsl:otherwise>
-			</xsl:choose>
-			<xsl:call-template name="escape-quotes">
-				<xsl:with-param name="text" select="substring($text, 2)"/>
-			</xsl:call-template>
-		</xsl:if>
+		<xsl:choose>
+			<xsl:when test="string-length(translate($text, $banned-double-quote-attribute-characters, '')) &lt; string-length($text)">
+				<xsl:variable name="character" select="substring($text, 1, 1)"/>
+				<xsl:choose>
+					<xsl:when test="$character = $doublequote">
+						<xsl:text disable-output-escaping="yes"><![CDATA[&quot;]]></xsl:text>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:value-of select="$character" disable-output-escaping="yes"/>
+					</xsl:otherwise>
+				</xsl:choose>
+				<xsl:call-template name="escape-quotes">
+					<xsl:with-param name="text" select="substring($text, 2)"/>
+				</xsl:call-template>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:value-of select="$text"/>
+			</xsl:otherwise>
+		</xsl:choose>
 	</xsl:template>
 	<!--
 
