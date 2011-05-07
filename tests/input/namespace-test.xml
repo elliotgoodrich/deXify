@@ -2,5 +2,4 @@
 <tests xmlns:please-delete-me="http://www.w3.org/1999/xhtml">
 	<element/>
 	<please-delete-me:element/>
-	<test:element/>
 </tests>
