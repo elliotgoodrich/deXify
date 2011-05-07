@@ -291,7 +291,7 @@
 		<xsl:if test="not(following-sibling::node()[1][self::xhtml:td or self::xhtml:th]) and following-sibling::node()">
 			<xsl:text disable-output-escaping="yes"><![CDATA[</]]></xsl:text>
 			<xsl:value-of select="local-name()"/>
-			<xsl:text disable-output-escaping="yes"><![CDATA[<]]></xsl:text>
+			<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
 		</xsl:if>
 	</xsl:template>
 	<!--
