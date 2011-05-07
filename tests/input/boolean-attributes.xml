@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tests>
+	<test checked="" compact="" declare="" defer="" disabled="" ismap="" itemscope="" multiple="" nohref="" noresize="" noshade="" nowrap="" readonly="" selected=""/>
+	<test checked="checked" compact="compact" declare="declare" defer="defer" disabled="disabled" ismap="ismap" itemscope="itemscope" multiple="multiple" nohref="nohref" noresize="noresize" noshade="noshade" nowrap="nowrap" readonly="readonly" selected="selected"/>
+	<test checked="CheCked" compact="Compact" declare="DECLARE" defer="deFER" disabled="Disabled" ismap="IsMaP" itemscope="iTEMscope" multiple="MULtipLE" nohref="NoHREF" noresize="NoREsize" noshade="NOshaDE" nowrap="NoWRAP" readonly="rEAdONLy" selected="SelecTed"/>
+	<test checked="value" compact="value" declare="value" defer="value" disabled="value" ismap="value" itemscope="value" multiple="value" nohref="value" noresize="value" noshade="value" nowrap="value" readonly="value" selected="value"/>
+</tests>
