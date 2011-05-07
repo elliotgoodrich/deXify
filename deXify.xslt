@@ -229,8 +229,8 @@
 	[SPEC] A tbody element's start tag may be omitted if the first thing inside the tbody element is a tr element, and if the element is not immediately preceded by a tbody, thead, or tfoot element whose end tag has been omitted. (It can't be omitted if the element is empty.)
 	[SPEC] A tbody element's end tag may be omitted if the tbody element is immediately followed by a tbody or tfoot element, or if there is no more content in the parent element. -->
 	<xsl:template match="xhtml:tbody">
-		<!-- A tbody element's start tag is only required if the first thing inside the tbody element isn't a tr element, or the tbody element is preceded by a tbody, thead or tfoot element (none of these will have end tags after the transformation). -->
-		<xsl:if test="not(node()[1][self::xhtml:tr]) or preceding-sibling::node()[1][self::xhtml:tbody or self::xhtml:thead or self::xhtml:tfoot]">
+		<!-- A tbody element's start tag is only required if the element has elements, or the first thing inside the tbody element isn't a tr element, or the tbody element is preceded by a tbody, thead or tfoot element (none of these will have end tags after the transformation). -->
+		<xsl:if test="attribute::* or not(node()[1][self::xhtml:tr]) or preceding-sibling::node()[1][self::xhtml:tbody or self::xhtml:thead or self::xhtml:tfoot]">
 			<xsl:text disable-output-escaping="yes"><![CDATA[<tbody]]></xsl:text>
 			<xsl:apply-templates select="@*">
 				<xsl:sort select="local-name()"/>

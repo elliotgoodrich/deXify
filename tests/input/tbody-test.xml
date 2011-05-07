@@ -3,6 +3,8 @@
 	<tbody>start tag required, end tag required</tbody>
 	<element>element</element>
 	<tbody><tr>tbody start tag not required, tbody end tag not required</tr></tbody>
+	<element>element</element>
+	<tbody attribute="value"><tr>tbody start tag required, tbody end tag not required</tr></tbody>
 	<tbody><tr>tbody start tag required, tbody end tag not required</tr></tbody>
 	<tbody><element>tbody start required, tbody end tag not required</element></tbody>
 	<tbody><tr>tbody start tag required, tbody end tag not required</tr></tbody>
