@@ -27,7 +27,7 @@
 	Apply templates -->
 	<xsl:template match="/">
 		<!-- Output HTML5 Doctype. -->
-		<xsl:text disable-output-escaping="yes"><![CDATA[<!doctype html>]]></xsl:text>
+		<xsl:text disable-output-escaping="yes">&lt;!doctype html&gt;</xsl:text>
 		<xsl:apply-templates/>
 	</xsl:template>
 	<!--
@@ -38,11 +38,11 @@
 	<xsl:template match="xhtml:html">
 		<!-- An html element's start tag is only required if the element has attributes -->
 		<xsl:if test="attribute::*">
-			<xsl:text disable-output-escaping="yes"><![CDATA[<html]]></xsl:text>
+			<xsl:text disable-output-escaping="yes">&lt;html</xsl:text>
 			<xsl:apply-templates select="@*">
 				<xsl:sort select="local-name()"/>
 			</xsl:apply-templates>
-			<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
+			<xsl:text disable-output-escaping="yes">&gt;</xsl:text>
 		</xsl:if>
 		<xsl:apply-templates/>
 		<!-- An html element's end tag is never required -->
@@ -55,11 +55,11 @@
 	<xsl:template match="xhtml:head">
 		<!-- A head element's start tag is only required if the element has attributes, or is not empty and the first thing inside the <head> element is not an element. -->
 		<xsl:if test="attribute::* or (node() and node()[1][not(self::xhtml:*)])">
-			<xsl:text disable-output-escaping="yes"><![CDATA[<head]]></xsl:text>
+			<xsl:text disable-output-escaping="yes">&lt;head</xsl:text>
 			<xsl:apply-templates select="@*">
 				<xsl:sort select="local-name()"/>
 			</xsl:apply-templates>
-			<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
+			<xsl:text disable-output-escaping="yes">&gt;</xsl:text>
 		</xsl:if>
 		<xsl:apply-templates/>
 		<!-- A head element's end tag is never required. -->
@@ -72,11 +72,11 @@
 	<xsl:template match="xhtml:body">
 		<!-- A body element's start tag is only required if the element has attributes, or is not empty and the first thing inside the body element is a script or style element. -->
 		<xsl:if test="attribute::* or (node() and node()[1][self::xhtml:script or self::xhtml:style])">
-			<xsl:text disable-output-escaping="yes"><![CDATA[<body]]></xsl:text>
+			<xsl:text disable-output-escaping="yes">&lt;body</xsl:text>
 			<xsl:apply-templates select="@*">
 				<xsl:sort select="local-name()"/>
 			</xsl:apply-templates>
-			<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
+			<xsl:text disable-output-escaping="yes">&gt;</xsl:text>
 		</xsl:if>
 		<xsl:apply-templates/>
 		<!-- A body element's end tag is never required -->
@@ -86,15 +86,15 @@
 	<p>
 	[SPEC 8.1.2.4] A p element's end tag may be omitted if the p element is immediately followed by an address, article, aside, blockquote, dir, div, dl, fieldset, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, hr, menu, nav, ol, p, pre, section, table, or ul, element, or if there is no more content in the parent element and the parent element is not an a element. -->
 	<xsl:template match="xhtml:p">
-		<xsl:text disable-output-escaping="yes"><![CDATA[<p]]></xsl:text>
+		<xsl:text disable-output-escaping="yes">&lt;p</xsl:text>
 		<xsl:apply-templates select="@*">
 			<xsl:sort select="local-name()"/>
 		</xsl:apply-templates>
-		<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
+		<xsl:text disable-output-escaping="yes">&gt;</xsl:text>
 		<xsl:apply-templates/>
 		<!-- A p element's end tag is only required if the element is not immediately followed by an address, ..., table or ul element, and either there is more content in the parent element or the parent element is an a element. -->
 		<xsl:if test="not(following-sibling::node()[1][self::xhtml:p or self::xhtml:address or self::xhtml:article or self::xhtml:aside or self::xhtml:blockquote or self::xhtml:dir or self::xhtml:div or self::xhtml:dl or self::xhtml:fieldset or self::xhtml:footer or self::xhtml:form or self::xhtml:h1 or self::xhtml:h2 or self::xhtml:h3 or self::xhtml:h4 or self::xhtml:h5 or self::xhtml:h6 or self::xhtml:header or self::xhtml:hgroup or self::xhtml:hr or self::xhtml:menu or self::xhtml:nav or self::xhtml:ol or self::xhtml:pre or self::xhtml:section or self::xhtml:table or self::xhtml:ul]) and (following-sibling::node() or parent::xhtml:a)">
-			<xsl:text disable-output-escaping="yes"><![CDATA[</p>]]></xsl:text>
+			<xsl:text disable-output-escaping="yes">&lt;/p&gt;</xsl:text>
 		</xsl:if>
 	</xsl:template>
 	<!--
@@ -102,15 +102,15 @@
 	<li>
 	[SPEC 8.1.2.4] A li element's end tag may be omitted if the li element is immediately followed by another li element or if there is no more content in the parent element. -->
 	<xsl:template match="xhtml:li">
-		<xsl:text disable-output-escaping="yes"><![CDATA[<li]]></xsl:text>
+		<xsl:text disable-output-escaping="yes">&lt;li</xsl:text>
 		<xsl:apply-templates select="@*">
 			<xsl:sort select="local-name()"/>
 		</xsl:apply-templates>
-		<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
+		<xsl:text disable-output-escaping="yes">&gt;</xsl:text>
 		<xsl:apply-templates/>
 		<!-- A li element's end tag is only required if the li element is not immediately followed by another li element and there is more content in the parent element. -->
 		<xsl:if test="following-sibling::node() and not(following-sibling::node()[1][self::xhtml:li])">
-			<xsl:text disable-output-escaping="yes"><![CDATA[</li>]]></xsl:text>
+			<xsl:text disable-output-escaping="yes">&lt;/li&gt;</xsl:text>
 		</xsl:if>
 	</xsl:template>
 	<!--
@@ -118,15 +118,15 @@
 	<dt>
 	[SPEC 8.1.2.4] A dt element's end tag may be omitted if the dt element is immediately followed by another dt element or a dd element. -->
 	<xsl:template match="xhtml:dt">
-		<xsl:text disable-output-escaping="yes"><![CDATA[<dt]]></xsl:text>
+		<xsl:text disable-output-escaping="yes">&lt;dt</xsl:text>
 		<xsl:apply-templates select="@*">
 			<xsl:sort select="local-name()"/>
 		</xsl:apply-templates>
-		<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
+		<xsl:text disable-output-escaping="yes">&gt;</xsl:text>
 		<xsl:apply-templates/>
 		<!-- A dt element's end tag is only required if the dt element is not immediately followed by another dt or dd element. -->
 		<xsl:if test="not(following-sibling::node()[1][self::xhtml:dt or self::xhtml:dd])">
-			<xsl:text disable-output-escaping="yes"><![CDATA[</dt>]]></xsl:text>
+			<xsl:text disable-output-escaping="yes">&lt;/dt&gt;</xsl:text>
 		</xsl:if>
 	</xsl:template>
 	<!--
@@ -134,15 +134,15 @@
 	<dd>
 	[SPEC 8.1.2.4] A dd element's end tag may be omitted if the dd element is immediately followed by another dd element or a dt element, or if there is no more content in the parent element. -->
 	<xsl:template match="xhtml:dd">
-		<xsl:text disable-output-escaping="yes"><![CDATA[<dd]]></xsl:text>
+		<xsl:text disable-output-escaping="yes">&lt;dd</xsl:text>
 		<xsl:apply-templates select="@*">
 			<xsl:sort select="local-name()"/>
 		</xsl:apply-templates>
-		<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
+		<xsl:text disable-output-escaping="yes">&gt;</xsl:text>
 		<xsl:apply-templates/>
 		<!-- A dd element's end tag is only required if the dd element is not immediately followed by another dd or dt element and there is more content in the parent element. -->
 		<xsl:if test="not(following-sibling::node()[1][self::xhtml:dt or self::xhtml:dd]) and following-sibling::node()">
-			<xsl:text disable-output-escaping="yes"><![CDATA[</dd>]]></xsl:text>
+			<xsl:text disable-output-escaping="yes">&lt;/dd&gt;</xsl:text>
 		</xsl:if>
 	</xsl:template>
 	<!--
@@ -150,18 +150,18 @@
 	<rt> and <rp>
 	[SPEC 8.1.2.4] An rt [rp] element's end tag may be omitted if the rt [rp] element is immediately followed by an rt or rp element, or if there is no more content in the parent element. -->
 	<xsl:template match="xhtml:rt | xhtml:rp">
-		<xsl:text disable-output-escaping="yes"><![CDATA[<]]></xsl:text>
+		<xsl:text disable-output-escaping="yes">&lt;</xsl:text>
 		<xsl:value-of select="local-name()"/>
 		<xsl:apply-templates select="@*">
 			<xsl:sort select="local-name()"/>
 		</xsl:apply-templates>
-		<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
+		<xsl:text disable-output-escaping="yes">&gt;</xsl:text>
 		<xsl:apply-templates/>
 		<!-- An rt/rp element's end tag is only required if the rt/rp element is not immediately followed by an rt or rp element and if there is more content in the parent element. -->
 		<xsl:if test="not(following-sibling::node()[1][self::xhtml:rt or self::xhtml:rp]) and following-sibling::node()">
-			<xsl:text disable-output-escaping="yes"><![CDATA[</]]></xsl:text>
+			<xsl:text disable-output-escaping="yes">&lt;/</xsl:text>
 			<xsl:value-of select="local-name()"/>
-			<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
+			<xsl:text disable-output-escaping="yes">&gt;</xsl:text>
 		</xsl:if>
 	</xsl:template>
 	<!--
@@ -169,15 +169,15 @@
 	<optgroup>
 	[SPEC 8.1.2.4] An optgroup element's end tag may be omitted if the optgroup element is immediately followed by another optgroup element, or if there is no more content in the parent element. -->
 	<xsl:template match="xhtml:optgroup">
-		<xsl:text disable-output-escaping="yes"><![CDATA[<optgroup]]></xsl:text>
+		<xsl:text disable-output-escaping="yes">&lt;optgroup</xsl:text>
 		<xsl:apply-templates select="@*">
 			<xsl:sort select="local-name()"/>
 		</xsl:apply-templates>
-		<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
+		<xsl:text disable-output-escaping="yes">&gt;</xsl:text>
 		<xsl:apply-templates/>
 		<!-- An optgroup element's end tag is only required if the optgroup element is not immediately followed by another optgroup element and there is more content in the parent element. -->
 		<xsl:if test="not(following-sibling::node()[1][self::xhtml:optgroup]) and following-sibling::node()">
-			<xsl:text disable-output-escaping="yes"><![CDATA[</optgroup>]]></xsl:text>
+			<xsl:text disable-output-escaping="yes">&lt;/optgroup&gt;</xsl:text>
 		</xsl:if>
 	</xsl:template>
 	<!--
@@ -185,15 +185,15 @@
 	<option>
 	[SPEC 8.1.2.4] An option element's end tag may be omitted if the option element is immediately followed by another option element, or if it is immediately followed by an optgroup element, or if there is no more content in the parent element. -->
 	<xsl:template match="xhtml:option">
-		<xsl:text disable-output-escaping="yes"><![CDATA[<option]]></xsl:text>
+		<xsl:text disable-output-escaping="yes">&lt;option</xsl:text>
 		<xsl:apply-templates select="@*">
 			<xsl:sort select="local-name()"/>
 		</xsl:apply-templates>
-		<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
+		<xsl:text disable-output-escaping="yes">&gt;</xsl:text>
 		<xsl:apply-templates/>
 		<!-- An option element's end tag is only required if the option element is not immediately followed by another option or optgroup element and there is more content in the parent element. -->
 		<xsl:if test="not(following-sibling::node()[1][self::xhtml:option or self::xhtml:optgroup]) and following-sibling::node()">
-			<xsl:text disable-output-escaping="yes"><![CDATA[</option>]]></xsl:text>
+			<xsl:text disable-output-escaping="yes">&lt;/option&gt;</xsl:text>
 		</xsl:if>
 	</xsl:template>
 	<!--
@@ -204,11 +204,11 @@
 	<xsl:template match="xhtml:colgroup">
 		<!-- A colgroup element's start tag is only required if the element has attributes, or if the first thing inside the colgroup element isn't a col element or the preceeding node is a colgroup element. -->
 		<xsl:if test="attribute::* or not(node()[1][self::xhtml:col]) or preceding-sibling::node()[1][self::xhtml:colgroup]">
-			<xsl:text disable-output-escaping="yes"><![CDATA[<colgroup]]></xsl:text>
+			<xsl:text disable-output-escaping="yes">&lt;colgroup</xsl:text>
 			<xsl:apply-templates select="@*">
 				<xsl:sort select="local-name()"/>
 			</xsl:apply-templates>
-			<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
+			<xsl:text disable-output-escaping="yes">&gt;</xsl:text>
 		</xsl:if>
 		<xsl:apply-templates/>
 		<!-- A colgroup element's end tag is never required. -->
@@ -218,15 +218,15 @@
 	<thead>
 	[SPEC 8.1.2.4] A thead element's end tag may be omitted if the thead element is immediately followed by a tbody or tfoot element. -->
 	<xsl:template match="xhtml:thead">
-		<xsl:text disable-output-escaping="yes"><![CDATA[<thead]]></xsl:text>
+		<xsl:text disable-output-escaping="yes">&lt;thead</xsl:text>
 		<xsl:apply-templates select="@*">
 			<xsl:sort select="local-name()"/>
 		</xsl:apply-templates>
-		<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
+		<xsl:text disable-output-escaping="yes">&gt;</xsl:text>
 		<xsl:apply-templates/>
 		<!-- A thead element's end tag is only required if the thead element is not immediately followed by a tbody or tfoot element. -->
 		<xsl:if test="not(following-sibling::node()[1][self::xhtml:tbody or self::xhtml:tfoot])">
-			<xsl:text disable-output-escaping="yes"><![CDATA[</thead>]]></xsl:text>
+			<xsl:text disable-output-escaping="yes">&lt;/thead&gt;</xsl:text>
 		</xsl:if>
 	</xsl:template>
 	<!--
@@ -237,16 +237,16 @@
 	<xsl:template match="xhtml:tbody">
 		<!-- A tbody element's start tag is only required if the element has elements, or the first thing inside the tbody element isn't a tr element, or the tbody element is preceded by a tbody, thead or tfoot element (none of these will have end tags after the transformation). -->
 		<xsl:if test="attribute::* or not(node()[1][self::xhtml:tr]) or preceding-sibling::node()[1][self::xhtml:tbody or self::xhtml:thead or self::xhtml:tfoot]">
-			<xsl:text disable-output-escaping="yes"><![CDATA[<tbody]]></xsl:text>
+			<xsl:text disable-output-escaping="yes">&lt;tbody</xsl:text>
 			<xsl:apply-templates select="@*">
 				<xsl:sort select="local-name()"/>
 			</xsl:apply-templates>
-			<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
+			<xsl:text disable-output-escaping="yes">&gt;</xsl:text>
 		</xsl:if>
 		<xsl:apply-templates/>
 		<!-- A tbody element's end tag is only required if the tbody element isn't immediately followed by a tbody or tfoot element and there is more content in the parent element. -->
 		<xsl:if test="not(following-sibling::node()[1][self::xhtml:tbody or self::xhtml:tfoot]) and following-sibling::node()">
-			<xsl:text disable-output-escaping="yes"><![CDATA[</tbody>]]></xsl:text>
+			<xsl:text disable-output-escaping="yes">&lt;/tbody&gt;</xsl:text>
 		</xsl:if>
 	</xsl:template>
 	<!--
@@ -254,15 +254,15 @@
 	<tfoot>
 	[SPEC 8.1.2.4] A tfoot element's end tag may be omitted if the tfoot element is immediately followed by a tbody element, or if there is no more content in the parent element. -->
 	<xsl:template match="xhtml:tfoot">
-		<xsl:text disable-output-escaping="yes"><![CDATA[<tfoot]]></xsl:text>
+		<xsl:text disable-output-escaping="yes">&lt;tfoot</xsl:text>
 		<xsl:apply-templates select="@*">
 			<xsl:sort select="local-name()"/>
 		</xsl:apply-templates>
-		<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
+		<xsl:text disable-output-escaping="yes">&gt;</xsl:text>
 		<xsl:apply-templates/>
 		<!-- A tfoot element's end tag is only required if the tfoot element isn't immediately followed by a tbody element and there is more content in the parent element. -->
 		<xsl:if test="not(following-sibling::node()[1][self::xhtml:tbody]) and following-sibling::node()">
-			<xsl:text disable-output-escaping="yes"><![CDATA[</tfoot>]]></xsl:text>
+			<xsl:text disable-output-escaping="yes">&lt;/tfoot&gt;</xsl:text>
 		</xsl:if>
 	</xsl:template>
 	<!--
@@ -270,15 +270,15 @@
 	<tr>
 	[SPEC 8.1.2.4] A tr element's end tag may be omitted if the tr element is immediately followed by another tr element, or if there is no more content in the parent element. -->
 	<xsl:template match="xhtml:tr">
-		<xsl:text disable-output-escaping="yes"><![CDATA[<tr]]></xsl:text>
+		<xsl:text disable-output-escaping="yes">&lt;tr</xsl:text>
 		<xsl:apply-templates select="@*">
 			<xsl:sort select="local-name()"/>
 		</xsl:apply-templates>
-		<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
+		<xsl:text disable-output-escaping="yes">&gt;</xsl:text>
 		<xsl:apply-templates/>
 		<!-- A tr element's end tag is only required if the tr element isn't immediately followed by a tr element and there is more content in the parent element. -->
 		<xsl:if test="not(following-sibling::node()[1][self::xhtml:tr]) and following-sibling::node()">
-			<xsl:text disable-output-escaping="yes"><![CDATA[</tr>]]></xsl:text>
+			<xsl:text disable-output-escaping="yes">&lt;/tr&gt;</xsl:text>
 		</xsl:if>
 	</xsl:template>
 	<!--
@@ -286,18 +286,18 @@
 	<td> and <th>
 	[SPEC 8.1.2.4] A td [th] element's end tag may be omitted if the td [th] element is immediately followed by a td or th element, or if there is no more content in the parent element. -->
 	<xsl:template match="xhtml:td | xhtml:th">
-		<xsl:text disable-output-escaping="yes"><![CDATA[<]]></xsl:text>
+		<xsl:text disable-output-escaping="yes">&lt;</xsl:text>
 		<xsl:value-of select="local-name()"/>
 		<xsl:apply-templates select="@*">
 			<xsl:sort select="local-name()"/>
 		</xsl:apply-templates>
-		<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
+		<xsl:text disable-output-escaping="yes">&gt;</xsl:text>
 		<xsl:apply-templates/>
 		<!-- A td/th element's end tag is only required if the td/th element isn't immediately followed by a td or th element and there is more content in the parent element. -->
 		<xsl:if test="not(following-sibling::node()[1][self::xhtml:td or self::xhtml:th]) and following-sibling::node()">
-			<xsl:text disable-output-escaping="yes"><![CDATA[</]]></xsl:text>
+			<xsl:text disable-output-escaping="yes">&lt;/</xsl:text>
 			<xsl:value-of select="local-name()"/>
-			<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
+			<xsl:text disable-output-escaping="yes">&gt;</xsl:text>
 		</xsl:if>
 	</xsl:template>
 	<!--
@@ -305,49 +305,49 @@
 	Void elements
 	[SPEC 8.1.2] Void elements only have a start tag; end tags must not be specified for void elements. -->
 	<xsl:template match="xhtml:area | xhtml:base | xhtml:br | xhtml:col | xhtml:command | xhtml:embed | xhtml:hr | xhtml:img | xhtml:input | xhtml:keygen | xhtml:link | xhtml:meta | xhtml:param | xhtml:source | xhtml:track | xhtml:wbr">
-		<xsl:text disable-output-escaping="yes"><![CDATA[<]]></xsl:text>
+		<xsl:text disable-output-escaping="yes">&lt;</xsl:text>
 		<xsl:value-of select="local-name()"/>
 		<xsl:apply-templates select="@*">
 			<xsl:sort select="local-name()"/>
 		</xsl:apply-templates>
-		<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
+		<xsl:text disable-output-escaping="yes">&gt;</xsl:text>
 	</xsl:template>
 	<!--
 
 	Other elements
 	[SPEC 8.1.2] The start and end tags of certain normal elements can be omitted, as described later. Those that cannot be omitted must not be omitted. -->
 	<xsl:template match="*">
-		<xsl:text disable-output-escaping="yes"><![CDATA[<]]></xsl:text>
+		<xsl:text disable-output-escaping="yes">&lt;</xsl:text>
 		<xsl:value-of select="local-name()"/>
 		<xsl:apply-templates select="@*">
 			<xsl:sort select="local-name()"/>
 		</xsl:apply-templates>
-		<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
+		<xsl:text disable-output-escaping="yes">&gt;</xsl:text>
 		<xsl:apply-templates/>
-		<xsl:text disable-output-escaping="yes"><![CDATA[</]]></xsl:text>
+		<xsl:text disable-output-escaping="yes">&lt;/</xsl:text>
 		<xsl:value-of select="local-name()"/>
-		<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
+		<xsl:text disable-output-escaping="yes">&gt;</xsl:text>
 	</xsl:template>
 	<!--
 
 	Elements not from the XHTML namespace with child elements. -->
 	<xsl:template match="svg:*[* or text()] | mathml:*[* or text()]">
-		<xsl:text disable-output-escaping="yes"><![CDATA[<]]></xsl:text>
+		<xsl:text disable-output-escaping="yes">&lt;</xsl:text>
 		<xsl:value-of select="local-name()"/>
 		<xsl:apply-templates select="@*">
 			<xsl:sort select="local-name()"/>
 		</xsl:apply-templates>
-		<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
+		<xsl:text disable-output-escaping="yes">&gt;</xsl:text>
 		<xsl:apply-templates/>
-		<xsl:text disable-output-escaping="yes"><![CDATA[</]]></xsl:text>
+		<xsl:text disable-output-escaping="yes">&lt;/</xsl:text>
 		<xsl:value-of select="local-name()"/>
-		<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
+		<xsl:text disable-output-escaping="yes">&gt;</xsl:text>
 	</xsl:template>
 	<!--
 
 	Elements not from the XHTML namespace with no child elements. -->
 	<xsl:template match="svg:* | mathml:*">
-		<xsl:text disable-output-escaping="yes"><![CDATA[<]]></xsl:text>
+		<xsl:text disable-output-escaping="yes">&lt;</xsl:text>
 		<xsl:value-of select="local-name()"/>
 		<xsl:apply-templates select="@*">
 			<xsl:sort select="local-name()"/>
@@ -356,7 +356,7 @@
 		<xsl:if test="@*">
 			<xsl:text> </xsl:text>
 		</xsl:if>
-		<xsl:text disable-output-escaping="yes"><![CDATA[/>]]></xsl:text>
+		<xsl:text disable-output-escaping="yes">/&gt;</xsl:text>
 	</xsl:template>
 	<!--
 
@@ -459,7 +459,7 @@
 				<xsl:variable name="character" select="substring($text, 1, 1)"/>
 				<xsl:choose>
 					<xsl:when test="$character = $singlequote">
-						<xsl:text disable-output-escaping="yes"><![CDATA[&apos;]]></xsl:text>
+						<xsl:text disable-output-escaping="yes">&amp;apos;</xsl:text>
 					</xsl:when>
 					<xsl:otherwise>
 						<xsl:value-of select="$character" disable-output-escaping="yes"/>
@@ -489,7 +489,7 @@
 				<xsl:variable name="character" select="substring($text, 1, 1)"/>
 				<xsl:choose>
 					<xsl:when test="$character = $doublequote">
-						<xsl:text disable-output-escaping="yes"><![CDATA[&quot;]]></xsl:text>
+						<xsl:text disable-output-escaping="yes">&amp;quot;</xsl:text>
 					</xsl:when>
 					<xsl:otherwise>
 						<xsl:value-of select="$character" disable-output-escaping="yes"/>

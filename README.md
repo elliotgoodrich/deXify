@@ -27,7 +27,6 @@ Since most programming languages have support for XSLT, deXify can be used in al
 
 Tasks to do
 -----------
- * Change <!CDATA[<html]]> to &lt;html to avoid the PHP problems
  * Example code to use deXify in:
   * PHP
   * Python
