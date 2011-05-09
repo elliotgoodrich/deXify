@@ -20,6 +20,7 @@ deXify_file = "../deXify.xslt"
 # test counters
 passed_tests = 0
 skipped_tests = 0
+failed_tests = 0
 
 # load the regex to get the file name without the extension
 filename_pattern = re.compile("^(.+)\.xml$")
@@ -54,23 +55,25 @@ for input_filename in os.listdir(input_dir):
         # get the expected output
         expected_output = f.read()
 
-        # exit with failed status if they are not equal
-        if test_output != expected_output:
+        # if the outputs are equal
+	if test_output == expected_output:
+	    passed_tests += 1
+
+        # else display what went wrong
+        else:
+            failed_tests += 1
             print "Test " + input_filename + " failed :("
             print "-- Output -------------\n" + test_output
             print "-- Expected output ----\n" + expected_output
-            sys.exit(1)
-
-        # otherwise incremant the test counter
-        else:
-            passed_tests += 1
 
 time_taken = round(100 * (time.time() - time_started), 2)
 
-# exit with passed status
-if skipped_tests == 0:
-    print "All " + str(passed_tests) + " tests passed :)"
-else:
-    print str(passed_tests) + " tests passed and " + str(skipped_tests) + " tests skipped"
+print "Number of tests passed:  " + str(passed_tests)
+print "Number of tests skipped: " + str(skipped_tests)
+print "Number of tests failed:  " + str(failed_tests)
 print "Time taken ~" + str(time_taken) + "ms"
-sys.exit(0)
+
+if failed_tests == 0:
+    sys.exit(0)
+else:
+    sys.exit(1)
