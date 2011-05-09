@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tests xmlns="http://www.w3.org/1999/xhtml" xmlns:please-delete-me="XMLNS">
+	<element keep-me="value" please-delete-me:delete-me="value"/>
+</tests>

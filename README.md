@@ -27,7 +27,6 @@ Since most programming languages have support for XSLT, deXify can be used in al
 
 Tasks to do
 -----------
- * Remove all non-xhtml namespace attributes (e.g., xml:lang)
  * Change <!CDATA[<html]]> to &lt;html to avoid the PHP problems
  * Example code to use deXify in:
   * PHP

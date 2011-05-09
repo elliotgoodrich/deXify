@@ -356,7 +356,7 @@
 	</xsl:template>
 	<!--
 
-	Attributes
+	Attributes with no namespace
 	[SPEC 8.1.2.3] Attribute values are a mixture of text and character references, except with the additional restriction that the text cannot contain an ambiguous ampersand. -->
 	<xsl:template match="@*">
 		<xsl:text> </xsl:text>
@@ -393,6 +393,11 @@
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
+	<!--
+
+	Attributes with a namespace
+	[SPEC 2.9] In the HTML syntax, namespace prefixes and namespace declarations do not have the same effect as in XML. For instance, the colon has no special meaning in HTML element names. -->
+	<xsl:template match="@*[namespace-uri(.) != '']"/>
 	<!--
 
 	Text -->
