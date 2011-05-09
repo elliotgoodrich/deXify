@@ -1,10 +1,13 @@
 deXify
 ======
-deXify is an XSLT file that will transform valid XHTML5 into valid HTML5. But while we're at it, we might as well make it the smallest HTML5 file we can!
+deXify is an XSLT that converts XHTML into HTML. The goals of deXify (in order of precedence) are:
+ # To convert valid XHTML5 into valid HTML5
+ # To convert XHTML1.0 into HTML (though validness is not a goal)
+ # To convert XHTML into the smallest HTML possible without sacrificing the time taken to convert a file
 
 The Problems
 ------------
-Whether it is XHTML1.0, XHTML2.0 or XHTML5; there are some fundamental problems with serving XHTML on the web. Below are a couple articles on those problems:
+Whether it is XHTML1.0 or XHTML5, there are some fundamental problems with serving XHTML on the web. Below are a couple articles on those problems:
 
  * [Sending XHTML as text/html Considered Harmful](http://hixie.ch/advocacy/xhtml) - by Ian Hickson
  * [Beware of XHTML](http://www.webdevout.net/articles/beware-of-xhtml) - by David Hammond
@@ -17,8 +20,20 @@ Due to the vast number of tools available, XML is a very easy markup language to
 
 Enter deXify.
 
-While transforming XHTML5 into HTML5, deXify will remove unnecessary (for validation) parts to the HTML5 document to lower the file size.
-
 How to use deXify
 -----------------
-Since most programming languages have support for XSLT, deXify can be incorporated with few problems. Example code to follow.
+Since most programming languages have support for XSLT, deXify can be used in all of them.
+
+Tasks to do
+-----------
+ * Remove all non-xhtml namespace attributes (e.g., xml:lang)
+ * Change <!CDATA[<html]]> to &lt;html to avoid the PHP problems
+ * Example code to use deXify in:
+  * PHP
+  * Python
+  * Perl
+  * Ruby
+  * C#
+ * Add a param in deXify to toggle removing comments or keeping them (could be useful for IE conditional comments)
+  * Write tests for this
+  * Need to add more logic to optional start/end tags
