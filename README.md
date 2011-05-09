@@ -27,6 +27,7 @@ Since most programming languages have support for XSLT, deXify can be used in al
 
 Tasks to do
 -----------
+ * Add all the boolean attributes (the initial list I used was not complete, e.g. there are attributes on the `<media>` and `<video>` elements)
  * Example code to use deXify in:
   * PHP
   * Python
