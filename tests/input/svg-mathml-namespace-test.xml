@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tests xmlns="http://www.w3.org/1999/xhtml" xmlns:mathml="http://www.w3.org/1998/Math/MathML" xmlns:svg="http://www.w3.org/2000/svg">
+	<body>
+		<svg xmlns="http://www.w3.org/2000/svg">
+			<rect width="200px" height="100px"/>
+		</svg>
+		<svg:svg>
+			<svg:rect width="200px" height="100px"/>
+		</svg:svg>
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<mrow>
+				<mi>a</mi>
+				<mi><!-- comment --></mi>
+				<plus/>
+			</mrow>
+		</math>
+		<mathml:math>
+			<mathml:mrow>
+				<mathml:mi>a</mathml:mi>
+				<mathml:mi><!-- comment --></mathml:mi>
+				<mathml:plus/>
+			</mathml:mrow>
+		</mathml:math>
+	</body>
+</tests>

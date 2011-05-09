@@ -330,6 +330,36 @@
 	</xsl:template>
 	<!--
 
+	Elements not from the XHTML namespace with child elements. -->
+	<xsl:template match="svg:*[* or text()] | mathml:*[* or text()]">
+		<xsl:text disable-output-escaping="yes"><![CDATA[<]]></xsl:text>
+		<xsl:value-of select="local-name()"/>
+		<xsl:apply-templates select="@*">
+			<xsl:sort select="local-name()"/>
+		</xsl:apply-templates>
+		<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
+		<xsl:apply-templates/>
+		<xsl:text disable-output-escaping="yes"><![CDATA[</]]></xsl:text>
+		<xsl:value-of select="local-name()"/>
+		<xsl:text disable-output-escaping="yes"><![CDATA[>]]></xsl:text>
+	</xsl:template>
+	<!--
+
+	Elements not from the XHTML namespace with no child elements. -->
+	<xsl:template match="svg:* | mathml:*">
+		<xsl:text disable-output-escaping="yes"><![CDATA[<]]></xsl:text>
+		<xsl:value-of select="local-name()"/>
+		<xsl:apply-templates select="@*">
+			<xsl:sort select="local-name()"/>
+		</xsl:apply-templates>
+		<!-- If we have attributes and as we (probably) strip out the quotes around the final attribute value, we need to add a space. -->
+		<xsl:if test="@*">
+			<xsl:text> </xsl:text>
+		</xsl:if>
+		<xsl:text disable-output-escaping="yes"><![CDATA[/>]]></xsl:text>
+	</xsl:template>
+	<!--
+
 	Empty attributes
 	[SPEC 8.1.2.3] Just the attribute name. The value is implicitly the empty string. -->
 	<xsl:template match="@*[. = '']">
