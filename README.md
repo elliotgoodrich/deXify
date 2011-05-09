@@ -1,6 +1,7 @@
 deXify
 ======
 deXify is an XSLT that converts XHTML into HTML. The goals of deXify (in order of precedence) are:
+
  1. To convert valid XHTML5 into valid HTML5
  2. To convert XHTML1.0 into HTML (though validness is not a goal)
  3. To convert XHTML into the smallest HTML possible without sacrificing the time taken to convert a file
