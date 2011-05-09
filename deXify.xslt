@@ -33,8 +33,8 @@
 	<!--
 
 	<html>
-	[SPEC] An html element's start tag may be omitted if the first thing inside the html element is not a comment.
-	[SPEC] An html element's end tag may be omitted if the html element is not immediately followed by a comment. -->
+	[SPEC 8.1.2.4] An html element's start tag may be omitted if the first thing inside the html element is not a comment.
+	[SPEC 8.1.2.4] An html element's end tag may be omitted if the html element is not immediately followed by a comment. -->
 	<xsl:template match="xhtml:html">
 		<!-- An html element's start tag is only required if the element has attributes -->
 		<xsl:if test="attribute::*">
@@ -50,8 +50,8 @@
 	<!--
 
 	<head>
-	[SPEC] A head element's start tag may be omitted if the element is empty, or if the first thing inside the head element is an element.
-	[SPEC] A head element's end tag may be omitted if the head element is not immediately followed by a space character or a comment. -->
+	[SPEC 8.1.2.4] A head element's start tag may be omitted if the element is empty, or if the first thing inside the head element is an element.
+	[SPEC 8.1.2.4] A head element's end tag may be omitted if the head element is not immediately followed by a space character or a comment. -->
 	<xsl:template match="xhtml:head">
 		<!-- A head element's start tag is only required if the element has attributes, or is not empty and the first thing inside the <head> element is not an element. -->
 		<xsl:if test="attribute::* or (node() and node()[1][not(self::xhtml:*)])">
@@ -67,8 +67,8 @@
 	<!--
 
 	<body>
-	[SPEC] A body element's start tag may be omitted if the element is empty, or if the first thing inside the body element is not a space character or a comment, except if the first thing inside the body element is a script or style element.
-	[SPEC] A body element's end tag may be omitted if the body element is not immediately followed by a comment. -->
+	[SPEC 8.1.2.4] A body element's start tag may be omitted if the element is empty, or if the first thing inside the body element is not a space character or a comment, except if the first thing inside the body element is a script or style element.
+	[SPEC 8.1.2.4] A body element's end tag may be omitted if the body element is not immediately followed by a comment. -->
 	<xsl:template match="xhtml:body">
 		<!-- A body element's start tag is only required if the element has attributes, or is not empty and the first thing inside the body element is a script or style element. -->
 		<xsl:if test="attribute::* or (node() and node()[1][self::xhtml:script or self::xhtml:style])">
@@ -84,7 +84,7 @@
 	<!--
 
 	<p>
-	[SPEC] A p element's end tag may be omitted if the p element is immediately followed by an address, article, aside, blockquote, dir, div, dl, fieldset, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, hr, menu, nav, ol, p, pre, section, table, or ul, element, or if there is no more content in the parent element and the parent element is not an a element. -->
+	[SPEC 8.1.2.4] A p element's end tag may be omitted if the p element is immediately followed by an address, article, aside, blockquote, dir, div, dl, fieldset, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, hr, menu, nav, ol, p, pre, section, table, or ul, element, or if there is no more content in the parent element and the parent element is not an a element. -->
 	<xsl:template match="xhtml:p">
 		<xsl:text disable-output-escaping="yes"><![CDATA[<p]]></xsl:text>
 		<xsl:apply-templates select="@*">
@@ -100,7 +100,7 @@
 	<!--
 
 	<li>
-	[SPEC] A li element's end tag may be omitted if the li element is immediately followed by another li element or if there is no more content in the parent element. -->
+	[SPEC 8.1.2.4] A li element's end tag may be omitted if the li element is immediately followed by another li element or if there is no more content in the parent element. -->
 	<xsl:template match="xhtml:li">
 		<xsl:text disable-output-escaping="yes"><![CDATA[<li]]></xsl:text>
 		<xsl:apply-templates select="@*">
@@ -116,7 +116,7 @@
 	<!--
 
 	<dt>
-	[SPEC] A dt element's end tag may be omitted if the dt element is immediately followed by another dt element or a dd element. -->
+	[SPEC 8.1.2.4] A dt element's end tag may be omitted if the dt element is immediately followed by another dt element or a dd element. -->
 	<xsl:template match="xhtml:dt">
 		<xsl:text disable-output-escaping="yes"><![CDATA[<dt]]></xsl:text>
 		<xsl:apply-templates select="@*">
@@ -132,7 +132,7 @@
 	<!--
 
 	<dd>
-	[SPEC] A dd element's end tag may be omitted if the dd element is immediately followed by another dd element or a dt element, or if there is no more content in the parent element. -->
+	[SPEC 8.1.2.4] A dd element's end tag may be omitted if the dd element is immediately followed by another dd element or a dt element, or if there is no more content in the parent element. -->
 	<xsl:template match="xhtml:dd">
 		<xsl:text disable-output-escaping="yes"><![CDATA[<dd]]></xsl:text>
 		<xsl:apply-templates select="@*">
@@ -148,7 +148,7 @@
 	<!--
 
 	<rt> and <rp>
-	[SPEC] An rt/rp element's end tag may be omitted if the rt/rp element is immediately followed by an rt or rp element, or if there is no more content in the parent element. -->
+	[SPEC 8.1.2.4] An rt [rp] element's end tag may be omitted if the rt [rp] element is immediately followed by an rt or rp element, or if there is no more content in the parent element. -->
 	<xsl:template match="xhtml:rt | xhtml:rp">
 		<xsl:text disable-output-escaping="yes"><![CDATA[<]]></xsl:text>
 		<xsl:value-of select="local-name()"/>
@@ -167,7 +167,7 @@
 	<!--
 
 	<optgroup>
-	[SPEC] An optgroup element's end tag may be omitted if the optgroup element is immediately followed by another optgroup element, or if there is no more content in the parent element. -->
+	[SPEC 8.1.2.4] An optgroup element's end tag may be omitted if the optgroup element is immediately followed by another optgroup element, or if there is no more content in the parent element. -->
 	<xsl:template match="xhtml:optgroup">
 		<xsl:text disable-output-escaping="yes"><![CDATA[<optgroup]]></xsl:text>
 		<xsl:apply-templates select="@*">
@@ -183,7 +183,7 @@
 	<!--
 
 	<option>
-	[SPEC] An option element's end tag may be omitted if the option element is immediately followed by another option element, or if it is immediately followed by an optgroup element, or if there is no more content in the parent element. -->
+	[SPEC 8.1.2.4] An option element's end tag may be omitted if the option element is immediately followed by another option element, or if it is immediately followed by an optgroup element, or if there is no more content in the parent element. -->
 	<xsl:template match="xhtml:option">
 		<xsl:text disable-output-escaping="yes"><![CDATA[<option]]></xsl:text>
 		<xsl:apply-templates select="@*">
@@ -199,8 +199,8 @@
 	<!--
 
 	<colgroup>
-	[SPEC] A colgroup element's start tag may be omitted if the first thing inside the colgroup element is a col element, and if the element is not immediately preceded by another colgroup element whose end tag has been omitted. (It can't be omitted if the element is empty.)
-	[SPEC] A colgroup element's end tag may be omitted if the colgroup element is not immediately followed by a space character or a comment. -->
+	[SPEC 8.1.2.4] A colgroup element's start tag may be omitted if the first thing inside the colgroup element is a col element, and if the element is not immediately preceded by another colgroup element whose end tag has been omitted. (It can't be omitted if the element is empty.)
+	[SPEC 8.1.2.4] A colgroup element's end tag may be omitted if the colgroup element is not immediately followed by a space character or a comment. -->
 	<xsl:template match="xhtml:colgroup">
 		<!-- A colgroup element's start tag is only required if the element has attributes, or if the first thing inside the colgroup element isn't a col element or the preceeding node is a colgroup element. -->
 		<xsl:if test="attribute::* or not(node()[1][self::xhtml:col]) or preceding-sibling::node()[1][self::xhtml:colgroup]">
@@ -216,7 +216,7 @@
 	<!--
 
 	<thead>
-	[SPEC] A thead element's end tag may be omitted if the thead element is immediately followed by a tbody or tfoot element. -->
+	[SPEC 8.1.2.4] A thead element's end tag may be omitted if the thead element is immediately followed by a tbody or tfoot element. -->
 	<xsl:template match="xhtml:thead">
 		<xsl:text disable-output-escaping="yes"><![CDATA[<thead]]></xsl:text>
 		<xsl:apply-templates select="@*">
@@ -232,8 +232,8 @@
 	<!--
 
 	<tbody>
-	[SPEC] A tbody element's start tag may be omitted if the first thing inside the tbody element is a tr element, and if the element is not immediately preceded by a tbody, thead, or tfoot element whose end tag has been omitted. (It can't be omitted if the element is empty.)
-	[SPEC] A tbody element's end tag may be omitted if the tbody element is immediately followed by a tbody or tfoot element, or if there is no more content in the parent element. -->
+	[SPEC 8.1.2.4] A tbody element's start tag may be omitted if the first thing inside the tbody element is a tr element, and if the element is not immediately preceded by a tbody, thead, or tfoot element whose end tag has been omitted. (It can't be omitted if the element is empty.)
+	[SPEC 8.1.2.4] A tbody element's end tag may be omitted if the tbody element is immediately followed by a tbody or tfoot element, or if there is no more content in the parent element. -->
 	<xsl:template match="xhtml:tbody">
 		<!-- A tbody element's start tag is only required if the element has elements, or the first thing inside the tbody element isn't a tr element, or the tbody element is preceded by a tbody, thead or tfoot element (none of these will have end tags after the transformation). -->
 		<xsl:if test="attribute::* or not(node()[1][self::xhtml:tr]) or preceding-sibling::node()[1][self::xhtml:tbody or self::xhtml:thead or self::xhtml:tfoot]">
@@ -252,7 +252,7 @@
 	<!--
 
 	<tfoot>
-	[SPEC] A tfoot element's end tag may be omitted if the tfoot element is immediately followed by a tbody element, or if there is no more content in the parent element. -->
+	[SPEC 8.1.2.4] A tfoot element's end tag may be omitted if the tfoot element is immediately followed by a tbody element, or if there is no more content in the parent element. -->
 	<xsl:template match="xhtml:tfoot">
 		<xsl:text disable-output-escaping="yes"><![CDATA[<tfoot]]></xsl:text>
 		<xsl:apply-templates select="@*">
@@ -268,7 +268,7 @@
 	<!--
 
 	<tr>
-	[SPEC] A tr element's end tag may be omitted if the tr element is immediately followed by another tr element, or if there is no more content in the parent element. -->
+	[SPEC 8.1.2.4] A tr element's end tag may be omitted if the tr element is immediately followed by another tr element, or if there is no more content in the parent element. -->
 	<xsl:template match="xhtml:tr">
 		<xsl:text disable-output-escaping="yes"><![CDATA[<tr]]></xsl:text>
 		<xsl:apply-templates select="@*">
@@ -284,7 +284,7 @@
 	<!--
 
 	<td> and <th>
-	[SPEC] A td/th element's end tag may be omitted if the td/th element is immediately followed by a td or th element, or if there is no more content in the parent element. -->
+	[SPEC 8.1.2.4] A td [th] element's end tag may be omitted if the td [th] element is immediately followed by a td or th element, or if there is no more content in the parent element. -->
 	<xsl:template match="xhtml:td | xhtml:th">
 		<xsl:text disable-output-escaping="yes"><![CDATA[<]]></xsl:text>
 		<xsl:value-of select="local-name()"/>
@@ -303,7 +303,7 @@
 	<!--
 
 	Void elements
-	[SPEC] Void elements only have a start tag; end tags must not be specified for void elements. -->
+	[SPEC 8.1.2] Void elements only have a start tag; end tags must not be specified for void elements. -->
 	<xsl:template match="xhtml:area | xhtml:base | xhtml:br | xhtml:col | xhtml:command | xhtml:embed | xhtml:hr | xhtml:img | xhtml:input | xhtml:keygen | xhtml:link | xhtml:meta | xhtml:param | xhtml:source | xhtml:track | xhtml:wbr">
 		<xsl:text disable-output-escaping="yes"><![CDATA[<]]></xsl:text>
 		<xsl:value-of select="local-name()"/>
@@ -315,7 +315,7 @@
 	<!--
 
 	Other elements
-	[SPEC] The start and end tags of certain normal elements can be omitted, as described later. Those that cannot be omitted must not be omitted. -->
+	[SPEC 8.1.2] The start and end tags of certain normal elements can be omitted, as described later. Those that cannot be omitted must not be omitted. -->
 	<xsl:template match="*">
 		<xsl:text disable-output-escaping="yes"><![CDATA[<]]></xsl:text>
 		<xsl:value-of select="local-name()"/>
@@ -331,7 +331,7 @@
 	<!--
 
 	Empty attributes
-	[SPEC] Just the attribute name. The value is implicitly the empty string. -->
+	[SPEC 8.1.2.3] Just the attribute name. The value is implicitly the empty string. -->
 	<xsl:template match="@*[. = '']">
 		<xsl:text> </xsl:text>
 		<xsl:value-of select="local-name()"/>
@@ -339,9 +339,9 @@
 	<!--
 
 	Boolean attributes
-	[SPEC] A number of attributes are boolean attributes. The presence of a boolean attribute on an element represents the true value, and the absence of the attribute represents the false value. 
-	[SPEC] If the attribute is present, its value must either be the empty string or a value that is an ASCII case-insensitive match for the attribute's canonical name, with no leading or trailing whitespace.
-	[MICRO] The itemscope attribute is a boolean attribute. -->
+	[SPEC 2.5.2] A number of attributes are boolean attributes. The presence of a boolean attribute on an element represents the true value, and the absence of the attribute represents the false value. 
+	[SPEC 2.5.2] If the attribute is present, its value must either be the empty string or a value that is an ASCII case-insensitive match for the attribute's canonical name, with no leading or trailing whitespace.
+	[MICRO 5.2.2] The itemscope attribute is a boolean attribute. -->
 	<xsl:template match="@compact | @checked | @declare | @readonly | @disabled | @selected | @defer | @ismap | @nohref | @noshade | @nowrap | @multiple | @noresize | @itemscope">
 		<!-- Display the attribute name if the value is a case-insensitive match to the name (the case where the attribute value is empty is handled by the previous template). -->
 		<xsl:variable name="lower-case-text">
@@ -357,7 +357,7 @@
 	<!--
 
 	Attributes
-	[SPEC] Attribute values are a mixture of text and character references, except with the additional restriction that the text cannot contain an ambiguous ampersand. -->
+	[SPEC 8.1.2.3] Attribute values are a mixture of text and character references, except with the additional restriction that the text cannot contain an ambiguous ampersand. -->
 	<xsl:template match="@*">
 		<xsl:text> </xsl:text>
 		<xsl:value-of select="local-name()"/>
@@ -365,13 +365,13 @@
 		<xsl:choose>
 			<!--
 			Unquoted attribute value syntax
-			[SPEC] ... must not contain any literal space characters, any U+0022 QUOTATION MARK characters ("), U+0027 APOSTROPHE characters ('), U+003D EQUALS SIGN characters (=), U+003C LESS-THAN SIGN characters (<), U+003E GREATER-THAN SIGN characters (>), or U+0060 GRAVE ACCENT characters (`), and must not be the empty string. -->
+			[SPEC 8.1.2.3] ... must not contain any literal space characters, any U+0022 QUOTATION MARK characters ("), U+0027 APOSTROPHE characters ('), U+003D EQUALS SIGN characters (=), U+003C LESS-THAN SIGN characters (<), U+003E GREATER-THAN SIGN characters (>), or U+0060 GRAVE ACCENT characters (`), and must not be the empty string. -->
 			<xsl:when test="string-length(translate(., $banned-quote-less-attribute-characters, '')) = string-length(.)">
 				<xsl:value-of select="."/>
 			</xsl:when>
 			<!--
 			Double-quoted attribute value syntax
-			[SPEC] ... must not contain any literal U+0022 QUOTATION MARK characters (").
+			[SPEC 8.1.2.3] ... must not contain any literal U+0022 QUOTATION MARK characters (").
 			Use double quotes only when the number of double quotes is fewer than the number of apostrophes. -->
 			<xsl:when test="string-length(translate(., $singlequote, '')) &lt; string-length(translate(., $doublequote, ''))">
 				<xsl:value-of select="$doublequote"/>
@@ -382,7 +382,7 @@
 			</xsl:when>
 			<!--
 			Single-quoted attribute value syntax
-			[SPEC] ... must not contain any literal U+0027 APOSTROPHE characters (').
+			[SPEC 8.1.2.3] ... must not contain any literal U+0027 APOSTROPHE characters (').
 			Use single quotes when the number of double quotes is greater than or equal to the number of apostrophes. -->
 			<xsl:otherwise>
 				<xsl:value-of select="$singlequote"/>
@@ -402,9 +402,9 @@
 	<!--
 
 	Non-escaped Text
-	[SPEC] Raw text elements can have text, though it has restrictions described below.
-	[SPEC] RCDATA elements can have text and character references, but the text must not contain an ambiguous ampersand. There are also further restrictions described below.
-	[SPEC] The text in raw text and RCDATA elements must not contain any occurrences of the string "</" (U+003C LESS-THAN SIGN, U+002F SOLIDUS) followed by characters that case-insensitively match the tag name of the element followed by one of U+0009 CHARACTER TABULATION, U+000A LINE FEED (LF), U+000C FORM FEED (FF), U+000D CARRIAGE RETURN (CR), U+0020 SPACE, U+003E GREATER-THAN SIGN (>), or U+002F SOLIDUS (/). -->
+	[SPEC 8.1.2] Raw text elements can have text, though it has restrictions described below.
+	[SPEC 8.1.2] RCDATA elements can have text and character references, but the text must not contain an ambiguous ampersand. There are also further restrictions described below.
+	[SPEC 8.1.2.6] The text in raw text and RCDATA elements must not contain any occurrences of the string "</" (U+003C LESS-THAN SIGN, U+002F SOLIDUS) followed by characters that case-insensitively match the tag name of the element followed by one of U+0009 CHARACTER TABULATION, U+000A LINE FEED (LF), U+000C FORM FEED (FF), U+000D CARRIAGE RETURN (CR), U+0020 SPACE, U+003E GREATER-THAN SIGN (>), or U+002F SOLIDUS (/). -->
 	<xsl:template match="text()[parent::xhtml:script or parent::xhtml:style]">
 		<!-- Disable escaping for raw text elements. -->
 		<xsl:value-of select="." disable-output-escaping="yes"/>
