@@ -47,10 +47,13 @@ for input_filename in os.listdir(input_dir):
     # check there is an expected output
     try:
         f = open(os.path.join(output_dir, output_filename), "r")
+
+    # if the expected output file doesn't exist then skip the test
     except:
         print "Skipping " + input_filename + " as it does not have an expected output"
         skipped_tests += 1
         continue
+
     else:
         # get the expected output
         expected_output = f.read()
@@ -66,13 +69,16 @@ for input_filename in os.listdir(input_dir):
             print "-- Output -------------\n" + test_output
             print "-- Expected output ----\n" + expected_output
 
-time_taken = round(100 * (time.time() - time_started), 2)
-
+# print the results
 print "Number of tests passed:  " + str(passed_tests)
 print "Number of tests skipped: " + str(skipped_tests)
 print "Number of tests failed:  " + str(failed_tests)
+
+# calculate and print the time taken
+time_taken = round(100 * (time.time() - time_started), 2)
 print "Time taken ~" + str(time_taken) + "ms"
 
+# exit with the correct error value
 if failed_tests == 0:
     sys.exit(0)
 else:
