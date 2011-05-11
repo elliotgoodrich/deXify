@@ -38,8 +38,8 @@
 	[SPEC 8.1.2.4] An html element's start tag may be omitted if the first thing inside the html element is not a comment.
 	[SPEC 8.1.2.4] An html element's end tag may be omitted if the html element is not immediately followed by a comment. -->
 	<xsl:template match="xhtml:html">
-		<!-- An html element's start tag is only required if the element has attributes -->
-		<xsl:if test="attribute::*">
+		<!-- An html element's start tag is only required if the element has attributes or the first thing inside the element is a comment. -->
+		<xsl:if test="attribute::* or ($keep-comments = 'true' and node()[1][self::comment()])">
 			<xsl:text disable-output-escaping="yes">&lt;html</xsl:text>
 			<xsl:apply-templates select="@*">
 				<xsl:sort select="local-name()"/>
@@ -47,7 +47,10 @@
 			<xsl:text disable-output-escaping="yes">&gt;</xsl:text>
 		</xsl:if>
 		<xsl:apply-templates/>
-		<!-- An html element's end tag is never required -->
+		<!-- An html element's end tag is only required if the element is immediately followed by a comment. -->
+		<xsl:if test="($keep-comments = 'true' and following-sibling::node()[1][self::comment()])">
+			<xsl:text disable-output-escaping="yes">&lt;/html&gt;</xsl:text>
+		</xsl:if>
 	</xsl:template>
 	<!--
 

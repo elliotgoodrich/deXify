@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<test xmlns="http://www.w3.org/1999/xhtml">
+	<html>
+		<element>html start tag not required, html end tag not required</element>
+	</html>
+	<html>html start tag not required, html end tag not required</html>
+	<html attribute="html start tag required, html end tag not required"/>
+	<html attribute="html start tag required, html end tag not required" attribute2="goodbye"/>
+	<html>
+		<!-- comment -->
+		<element>html start tag required, html end tag not required</element>
+	</html>
+	<html>
+		<element>html start tag not required, html end tag required</element>
+	</html>
+	<!-- comment -->
+</test>
