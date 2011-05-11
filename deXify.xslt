@@ -12,7 +12,7 @@
 	<xsl:output method="html"/>
 	<xsl:strip-space elements="*"/>
 	<!-- Parameter of whether to keep comments in the output -->
-	<xsl:param name="keep-comments"></xsl:param>
+	<xsl:param name="keep-comments">false</xsl:param>
 	<!-- Variable for a single quotation symbol -->
 	<xsl:variable name="singlequote">'</xsl:variable>
 	<!-- Variable for a double quotation symbol -->
