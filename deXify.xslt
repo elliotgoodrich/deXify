@@ -11,6 +11,8 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mathml="http://www.w3.org/1998/Math/MathML">
 	<xsl:output method="html"/>
 	<xsl:strip-space elements="*"/>
+	<!-- Parameter of whether to keep comments in the output -->
+	<xsl:param name="keep-comments"></xsl:param>
 	<!-- Variable for a single quotation symbol -->
 	<xsl:variable name="singlequote">'</xsl:variable>
 	<!-- Variable for a double quotation symbol -->

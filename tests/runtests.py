@@ -25,6 +25,9 @@ failed_tests = 0
 # load the regex to get the file name without the extension
 filename_pattern = re.compile("^(.+)\.xml$")
 
+# load the regex to check what parameters we need to pass
+keep_comments = re.compile("^keep\-comments")
+
 # load the XSLT
 f = open(deXify_file, "r")
 deXify_doc = etree.parse(f)
@@ -37,8 +40,14 @@ for input_filename in os.listdir(input_dir):
     f = open(os.path.join(input_dir, input_filename), "r")
     test_input = etree.fromstring(f.read())
 
+    # change the keep-comments parameter depending on whether the filename says to
+    if keep_comments.match(input_filename):
+        keep_comments_value = etree.XSLT.strparam("true")
+    else:
+        keep_comments_value = etree.XSLT.strparam("false")
+
     # perform the XSLT and get the output
-    result = deXify_transform(test_input)
+    result = deXify_transform(test_input, **{'keep-comments': keep_comments_value})
     test_output = unicode(result).strip()
 
     # get the output file name (test1.xml -> test1.html)
