@@ -1,15 +1,24 @@
 <?xml version="1.0"?>
 <test xmlns="http://www.w3.org/1999/xhtml">
 	<body></body>
-	<body>text</body>
-	<body attribute="hello"/>
+	<body>start tag not required, end tag not required</body>
+	<element>element</element>
+	<body>start tag not required, end tag not required</body>
+	<!-- comment -->
 	<body>
-		<element/>
+		<!-- comment -->
+		<element>start body tag not required, end body tag not required</element>
+	</body>
+	<body attribute="body start tag required, body end tag not required">
+		<element></element>
 	</body>
 	<body>
-		<script/>
+		<element>body start tag not required, body end tag not required</element>
 	</body>
 	<body>
-		<style/>
+		<script>body start tag required, body end tag not required</script>
+	</body>
+	<body>
+		<style>body start tag required, body end tag not required</style>
 	</body>
 </test>

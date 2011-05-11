@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <test xmlns="http://www.w3.org/1999/xhtml">
 	<ul>
-		<li>item 1</li>
-		<li>item 2</li>
-		<randomelement>this isn't allowed</randomelement>
-		<li>item 3</li>
-		<li><randomelement>spanned item</randomelement></li>
-		<li>item 4</li>
+		<li>start tag required, end tag not</li>
+		<li>start tag required, end tag required</li>
+		<element>element</element>
+		<li>start tag required, end tag not</li>
+		<li><element>li start tag required, end tag not</element></li>
+		<li>start tag required, end tag not</li>
 	</ul>
 </test>
