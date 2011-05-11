@@ -3,8 +3,8 @@ deXify
 deXify is an XSLT that converts XHTML into HTML. The goals of deXify (in order of precedence) are:
 
  1. To convert valid XHTML5 into valid HTML5
- 2. To convert XHTML1.0 into HTML (though validness is not a goal)
- 3. To convert XHTML into the smallest HTML possible without sacrificing the time taken to convert a file
+ 2. To convert XHTML into the smallest HTML possible without sacrificing the time taken to convert a file
+ 3. To convert other versions of XHTML into HTML (though validness is not a goal)
 
 The Problems
 ------------
@@ -18,8 +18,6 @@ Whether it is XHTML1.0 or XHTML5, there are some fundamental problems with servi
 The Solution
 ------------
 Due to the vast number of tools available, XML is a very easy markup language to work with. And so, working with XHTML on the server side is usually much simpler than working with HTML. But due to the large number of problems serving XHTML to the browser, we need something to translate between the two.
-
-Enter deXify.
 
 How to use deXify
 -----------------
@@ -37,3 +35,4 @@ Tasks to do
  * Add a param in deXify to toggle removing comments or keeping them (could be useful for IE conditional comments)
   * Write tests for this
   * Need to add more logic to optional start/end tags
+ * Update the older tests to be more self describing like the new ones
