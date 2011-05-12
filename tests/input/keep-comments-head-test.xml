@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<test xmlns="http://www.w3.org/1999/xhtml">
+	<head></head>
+	<head>start head tag required, end head tag not required</head>
+	<element>element</element>
+	<head>start head tag required, end head tag required</head>
+	<!-- comment -->
+	<head attribute="start head tag required, end head tag not required"/>
+	<head>
+		<element>start head tag not required, end head tag not required</element>
+	</head>
+</test>

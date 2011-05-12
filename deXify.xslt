@@ -69,7 +69,10 @@
 			<xsl:text disable-output-escaping="yes">&gt;</xsl:text>
 		</xsl:if>
 		<xsl:apply-templates/>
-		<!-- A head element's end tag is never required. -->
+		<!-- A head element's end tag is only required if the element is immediately followed by a comment. -->
+		<xsl:if test="($keep-comments = 'true' and following-sibling::node()[1][self::comment()])">
+			<xsl:text disable-output-escaping="yes">&lt;/head&gt;</xsl:text>
+		</xsl:if>
 	</xsl:template>
 	<!--
 
