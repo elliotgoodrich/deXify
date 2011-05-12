@@ -9,7 +9,9 @@
 	- All comments starting with [MICRO] are taken from the HTML5 Microdata specification <http://www.w3.org/TR/html5/microdata.html>
 -->
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mathml="http://www.w3.org/1998/Math/MathML">
+	<!-- Output in html so we have the option to disable or enable escape output-->
 	<xsl:output method="html"/>
+	<!-- Remove whitespace around all the elements -->
 	<xsl:strip-space elements="*"/>
 	<!-- Parameter of whether to keep comments in the output -->
 	<xsl:param name="keep-comments">false</xsl:param>
