@@ -456,6 +456,16 @@
 	</xsl:template>
 	<!--
 
+	Comments -->
+	<xsl:template match="comment()">
+		<xsl:if test="$keep-comments = 'true'">
+			<xsl:comment>
+				<xsl:value-of select="."/>
+			</xsl:comment>
+		</xsl:if>
+	</xsl:template>
+	<!--
+
 	escape-apostrophes
 	This function replaces:
 		- ' with &apos;
