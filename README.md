@@ -32,7 +32,3 @@ Tasks to do
   * Perl
   * Ruby
   * C#
- * Add a param in deXify to toggle removing comments or keeping them (could be useful for IE conditional comments)
-  * Write tests for this
-  * Need to add more logic to optional start/end tags
- * Update the older tests to be more self describing like the new ones
