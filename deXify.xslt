@@ -80,8 +80,8 @@
 	[SPEC 8.1.2.4] A body element's start tag may be omitted if the element is empty, or if the first thing inside the body element is not a space character or a comment, except if the first thing inside the body element is a script or style element.
 	[SPEC 8.1.2.4] A body element's end tag may be omitted if the body element is not immediately followed by a comment. -->
 	<xsl:template match="xhtml:body">
-		<!-- A body element's start tag is only required if the element has attributes, or is not empty and the first thing inside the body element is a script or style element. -->
-		<xsl:if test="attribute::* or (node() and node()[1][self::xhtml:script or self::xhtml:style])">
+		<!-- A body element's start tag is only required if the element has attributes, or is not empty and the first thing inside the body element is a script element, a style element or a comment. -->
+		<xsl:if test="attribute::* or (node() and node()[1][self::xhtml:script or self::xhtml:style or ($keep-comments = 'true' and self::comment())])">
 			<xsl:text disable-output-escaping="yes">&lt;body</xsl:text>
 			<xsl:apply-templates select="@*">
 				<xsl:sort select="local-name()"/>
@@ -89,7 +89,10 @@
 			<xsl:text disable-output-escaping="yes">&gt;</xsl:text>
 		</xsl:if>
 		<xsl:apply-templates/>
-		<!-- A body element's end tag is never required -->
+		<!-- A body element's end tag is only required if the element is immediately followed by a comment. -->
+		<xsl:if test="($keep-comments = 'true' and following-sibling::node()[1][self::comment()])">
+			<xsl:text disable-output-escaping="yes">&lt;/body&gt;</xsl:text>
+		</xsl:if>
 	</xsl:template>
 	<!--
 
