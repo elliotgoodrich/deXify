@@ -22,7 +22,3 @@ Due to the vast number of tools available, XML is a very easy markup language to
 How to use deXify
 -----------------
 Since most programming languages have support for XSLT, deXify can be used in all of them.
-
-Tasks to do
------------
- * Add all the boolean attributes (the initial list I used was not complete, e.g. there are attributes on the `<media>` and `<video>` elements)

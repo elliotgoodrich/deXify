@@ -388,7 +388,7 @@
 	[SPEC 2.5.2] A number of attributes are boolean attributes. The presence of a boolean attribute on an element represents the true value, and the absence of the attribute represents the false value. 
 	[SPEC 2.5.2] If the attribute is present, its value must either be the empty string or a value that is an ASCII case-insensitive match for the attribute's canonical name, with no leading or trailing whitespace.
 	[MICRO 5.2.2] The itemscope attribute is a boolean attribute. -->
-	<xsl:template match="@compact | @checked | @declare | @readonly | @disabled | @selected | @defer | @ismap | @nohref | @noshade | @nowrap | @multiple | @noresize | @itemscope">
+	<xsl:template match="@async | @autofocus | @autoplay | @checked | @compact | @controls | @declare | @default | @defer | @disabled | @formnovalidate | @hidden | @ismap | @itemscope | @loop | @multiple | @nohref | @noresize | @noshade | @novalidate | @nowrap | @open | @pubdate | @readonly | @required | @reversed | @scoped | @seamless | @selected | @truespeed">
 		<!-- Display the attribute name if the value is a case-insensitive match to the name (the case where the attribute value is empty is handled by the previous template). -->
 		<xsl:variable name="lower-case-text">
 			<xsl:call-template name="to-lower-case">
