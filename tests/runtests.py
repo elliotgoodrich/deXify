@@ -41,10 +41,7 @@ for input_filename in os.listdir(input_dir):
     test_input = etree.fromstring(f.read())
 
     # change the keep-comments parameter depending on whether the filename says to
-    if keep_comments.match(input_filename):
-        keep_comments_value = etree.XSLT.strparam("true")
-    else:
-        keep_comments_value = etree.XSLT.strparam("false")
+    keep_comments_value = etree.XSLT.strparam("true") if keep_comments.match(input_filename) else etree.XSLT.strparam("false")
 
     # perform the XSLT and get the output
     result = deXify_transform(test_input, **{'keep-comments': keep_comments_value})
