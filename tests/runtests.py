@@ -85,7 +85,7 @@ time_taken = round(100 * (time.time() - time_started), 2)
 print "Time taken ~" + str(time_taken) + "ms"
 
 # exit with the correct error value
-if failed_tests == 0:
-    sys.exit(0)
-else:
+if failed_tests:
     sys.exit(1)
+else:
+    sys.exit(0)
