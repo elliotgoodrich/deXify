@@ -456,7 +456,7 @@
 	[SPEC 8.1.2] Raw text elements can have text, though it has restrictions described below.
 	[SPEC 8.1.2] RCDATA elements can have text and character references, but the text must not contain an ambiguous ampersand. There are also further restrictions described below.
 	[SPEC 8.1.2.6] The text in raw text and RCDATA elements must not contain any occurrences of the string "</" (U+003C LESS-THAN SIGN, U+002F SOLIDUS) followed by characters that case-insensitively match the tag name of the element followed by one of U+0009 CHARACTER TABULATION, U+000A LINE FEED (LF), U+000C FORM FEED (FF), U+000D CARRIAGE RETURN (CR), U+0020 SPACE, U+003E GREATER-THAN SIGN (>), or U+002F SOLIDUS (/). -->
-	<xsl:template match="text()[parent::xhtml:script or parent::xhtml:style]">
+	<xsl:template match="xhtml:script/text() | xhtml:style/text()">
 		<!-- Disable escaping for raw text elements. -->
 		<xsl:value-of select="." disable-output-escaping="yes"/>
 	</xsl:template>
