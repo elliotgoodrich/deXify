@@ -13,7 +13,7 @@ Whether it is XHTML1.0 or XHTML5, there are some fundamental problems with servi
  * [Sending XHTML as text/html Considered Harmful](http://hixie.ch/advocacy/xhtml) - by Ian Hickson
  * [Beware of XHTML](http://www.webdevout.net/articles/beware-of-xhtml) - by David Hammond
  * [The Perils of Using XHTML Properly](http://www.456bereastreet.com/archive/200501/the_perils_of_using_xhtml_properly/) - by Roger Johansson
- * [Thought Experiment](http://diveintomark.org/archives/2004/01/14/thought_experiment) - by Mark Pilgrim
+ * [Thought Experiment](http://web.archive.org/web/20110726002049/http://diveintomark.org/archives/2004/01/14/thought_experiment) - by Mark Pilgrim
 
 The Solution
 ------------
